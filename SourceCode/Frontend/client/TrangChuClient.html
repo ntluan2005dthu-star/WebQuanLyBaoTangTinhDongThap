@@ -1,0 +1,4526 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bảo tàng Đồng Tháp</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --xanh-la: #4e7f52;
+        --hong-sen: #d96c8a;
+        --vang-lua: #d8a64e;
+        --kem-nga: #f8f5ef;
+        --trang: #ffffff;
+        --nau-den: #2f2a26;
+        --xam-be: #ddd6c9;
+        --radius: 12px;
+        --transition: 0.3s ease;
+        --header-height: 75px;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--kem-nga);
+        color: var(--nau-den);
+        line-height: 1.6;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      ul {
+        list-style: none;
+      }
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* ===== HEADER ===== */
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: var(--trang);
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        height: var(--header-height);
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #e7e7e7;
+      }
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+        gap: 16px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+      .logo-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--xanh-la);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(78, 127, 82, 0.3);
+      }
+      .logo-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        display: block;
+      }
+      .brand-name {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--xanh-la);
+        line-height: 1.2;
+      }
+      .brand-name small {
+        display: block;
+        font-size: 0.65rem;
+        color: #888;
+        font-weight: 400;
+        margin-top: 1px;
+      }
+      .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        flex: 1;
+        justify-content: center;
+      }
+      .nav-menu > li {
+        position: relative;
+      }
+      .nav-menu > li > a,
+      .nav-menu > li > span {
+        color: var(--nau-den);
+        font-size: 0.88rem;
+        font-weight: 600;
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+        transition: var(--transition);
+        border-radius: 6px;
+        white-space: nowrap;
+      }
+      .nav-menu > li > a:hover,
+      .nav-menu > li > span:hover {
+        background: var(--kem-nga);
+        color: var(--xanh-la);
+      }
+      .nav-menu > li > a i,
+      .nav-menu > li > span i {
+        font-size: 0.7rem;
+        margin-left: 2px;
+        opacity: 0.6;
+      }
+      .dropdown {
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 50%;
+        transform: translateX(-50%) translateY(6px);
+        min-width: 200px;
+        background: var(--trang);
+        border-radius: var(--radius);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        padding: 6px 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        z-index: 999;
+        border: 1px solid var(--xam-be);
+      }
+      .nav-menu > li:hover .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+      }
+      .dropdown li a {
+        display: block;
+        padding: 8px 20px;
+        color: var(--nau-den);
+        font-size: 0.85rem;
+        transition: var(--transition);
+        border-left: 3px solid transparent;
+      }
+      .dropdown li a:hover {
+        background: var(--kem-nga);
+        border-left-color: var(--hong-sen);
+        color: var(--xanh-la);
+      }
+      .dropdown li a i {
+        margin-right: 6px;
+        color: var(--xanh-la);
+        width: 18px;
+      }
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+      .lang-toggle {
+        display: flex;
+        gap: 2px;
+        background: var(--kem-nga);
+        border-radius: 30px;
+        padding: 3px;
+        border: 1px solid var(--xam-be);
+      }
+      .lang-toggle button {
+        border: none;
+        background: transparent;
+        padding: 3px 10px;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 0.7rem;
+        cursor: pointer;
+        transition: var(--transition);
+        color: var(--nau-den);
+      }
+      .lang-toggle button.active {
+        background: var(--xanh-la);
+        color: var(--trang);
+      }
+      .lang-toggle button:hover:not(.active) {
+        background: var(--xam-be);
+      }
+      .auth-item a {
+        padding: 5px 14px;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 0.78rem;
+        transition: var(--transition);
+        display: inline-block;
+      }
+      .auth-item .btn-register-nav {
+        background: var(--vang-lua);
+        color: var(--nau-den);
+      }
+      .auth-item .btn-register-nav:hover {
+        background: #c7953a;
+      }
+      .auth-item .btn-login-nav {
+        background: transparent;
+        color: var(--nau-den);
+        border: 1px solid var(--xam-be);
+      }
+      .auth-item .btn-login-nav:hover {
+        background: var(--kem-nga);
+      }
+      .profile-menu {
+        position: relative;
+        cursor: pointer;
+      }
+      .profile-menu .profile-icon {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: var(--nau-den);
+        padding: 4px 12px;
+        border-radius: 30px;
+        background: var(--kem-nga);
+        transition: var(--transition);
+        font-weight: 600;
+        font-size: 0.78rem;
+        border: 1px solid var(--xam-be);
+      }
+      .profile-menu .profile-icon:hover {
+        background: var(--xam-be);
+      }
+      .profile-menu .profile-icon i {
+        font-size: 1.1rem;
+        color: var(--xanh-la);
+      }
+      .profile-dropdown {
+        position: absolute;
+        top: calc(100% + 4px);
+        right: 0;
+        min-width: 210px;
+        background: var(--trang);
+        border-radius: var(--radius);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        padding: 6px 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(6px);
+        transition: var(--transition);
+        z-index: 999;
+        border: 1px solid var(--xam-be);
+      }
+      .profile-menu:hover .profile-dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .profile-dropdown .dropdown-title {
+        padding: 6px 18px;
+        font-weight: 600;
+        color: var(--xanh-la);
+        border-bottom: 1px solid var(--xam-be);
+        font-size: 0.8rem;
+      }
+      .profile-dropdown .dropdown-title i {
+        margin-right: 6px;
+      }
+      .profile-dropdown li a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 18px;
+        color: var(--nau-den);
+        font-size: 0.8rem;
+        transition: var(--transition);
+        border-left: 3px solid transparent;
+      }
+      .profile-dropdown li a:hover {
+        background: var(--kem-nga);
+        border-left-color: var(--hong-sen);
+        color: var(--xanh-la);
+      }
+      .profile-dropdown li a i {
+        width: 18px;
+        color: var(--xanh-la);
+      }
+      .profile-dropdown .logout-item a {
+        color: var(--hong-sen);
+      }
+      .profile-dropdown .logout-item a i {
+        color: var(--hong-sen);
+      }
+
+      /* ===== BANNER ===== */
+      .banner-slideshow {
+        position: relative;
+        width: 100%;
+        height: 680px;
+        max-height: 900px;
+        min-height: 500px;
+        overflow: hidden;
+        background: var(--xanh-la);
+      }
+      .banner-slideshow .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        z-index: 0;
+      }
+      .banner-slideshow .slide.active {
+        opacity: 1;
+        z-index: 1;
+      }
+      .banner-slideshow .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: brightness(1.33);
+      }
+      .banner-slideshow .slide::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.25) 0%,
+          rgba(0, 0, 0, 0.55) 60%,
+          rgba(0, 0, 0, 0.7) 100%
+        );
+        z-index: 1;
+      }
+      .banner-slideshow .slide .slide-content {
+        position: absolute;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+        text-align: center;
+        color: #fff;
+        padding: 20px;
+        width: 90%;
+        max-width: 820px;
+        pointer-events: none;
+      }
+      .banner-slideshow .slide .slide-content h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 14px;
+        line-height: 1.2;
+        color: #fff;
+        text-shadow:
+          0 2px 4px rgba(0, 0, 0, 0.7),
+          0 4px 12px rgba(0, 0, 0, 0.5),
+          0 0 40px rgba(0, 0, 0, 0.4);
+      }
+      .banner-slideshow .slide .slide-content p {
+        font-size: 1.25rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.95);
+        text-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.7),
+          0 3px 10px rgba(0, 0, 0, 0.4);
+      }
+      .banner-slideshow .dots {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 12px;
+        z-index: 10;
+      }
+      .banner-slideshow .dots .dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.4);
+        cursor: pointer;
+        transition: var(--transition);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+      }
+      .banner-slideshow .dots .dot.active {
+        background: var(--vang-lua);
+        border-color: var(--vang-lua);
+        transform: scale(1.2);
+      }
+
+      /* ===== INTRO ===== */
+      .intro-section {
+        padding: 70px 0 60px;
+        background: var(--trang);
+        border-bottom: 1px solid var(--xam-be);
+      }
+      .intro-grid {
+        display: grid;
+        grid-template-columns: 58% 42%;
+        gap: 48px;
+        align-items: center;
+      }
+      .intro-content h1 {
+        font-size: 2.6rem;
+        font-weight: 700;
+        line-height: 1.25;
+        margin-bottom: 16px;
+        color: var(--xanh-la);
+      }
+      .intro-content h1 span {
+        color: var(--vang-lua);
+      }
+      .intro-content .intro-desc {
+        font-size: 1.05rem;
+        opacity: 0.85;
+        margin-bottom: 28px;
+        line-height: 1.7;
+      }
+      .search-box {
+        display: flex;
+        background: var(--trang);
+        border-radius: 14px;
+        border: 2px solid var(--xam-be);
+        overflow: hidden;
+        width: 100%;
+        margin-bottom: 20px;
+        transition: var(--transition);
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+      }
+      .search-box:focus-within {
+        border-color: var(--xanh-la);
+        box-shadow:
+          0 0 0 4px rgba(78, 127, 82, 0.12),
+          0 4px 20px rgba(0, 0, 0, 0.06);
+      }
+      .search-box .search-icon-left {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 16px;
+        color: #bbb;
+        font-size: 1.05rem;
+        flex-shrink: 0;
+      }
+      .search-box input {
+        flex: 1;
+        border: none;
+        background: transparent;
+        padding: 14px 0;
+        font-size: 0.95rem;
+        color: var(--nau-den);
+        outline: none;
+        font-family: inherit;
+        min-width: 0;
+      }
+      .search-box input::placeholder {
+        color: #b0b0b0;
+        font-style: italic;
+      }
+      .search-box button {
+        background: var(--xanh-la);
+        border: none;
+        padding: 0 28px;
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+      .search-box button:hover {
+        background: #3d6640;
+      }
+      .search-suggestions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 28px;
+      }
+      .search-suggestions span {
+        background: var(--kem-nga);
+        padding: 5px 14px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        border: 1px solid var(--xam-be);
+        cursor: pointer;
+        color: var(--nau-den);
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .search-suggestions span:hover {
+        border-color: var(--xanh-la);
+        color: var(--xanh-la);
+        background: #eef5ee;
+      }
+      .search-suggestions span i {
+        color: var(--xanh-la);
+        font-size: 0.7rem;
+      }
+      .intro-stats {
+        display: flex;
+        gap: 28px;
+        margin-top: 10px;
+      }
+      .intro-stat {
+        text-align: center;
+      }
+      .intro-stat .stat-num {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: var(--xanh-la);
+        line-height: 1;
+        font-family: "Playfair Display", serif;
+      }
+      .intro-stat .stat-label {
+        font-size: 0.75rem;
+        color: #999;
+        margin-top: 4px;
+        font-weight: 500;
+      }
+      .intro-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .intro-real-img {
+        width: 100%;
+        max-width: 100%;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        border-radius: var(--radius);
+        border: 3px solid var(--xam-be);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+      }
+      .intro-real-img:hover {
+        transform: translateY(-6px) scale(1.01);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+        border-color: var(--xanh-la);
+      }
+
+      /* ===== FEATURES ===== */
+      .features {
+        padding: 50px 0;
+        background: var(--kem-nga);
+      }
+      .section-title {
+        text-align: center;
+        margin-bottom: 36px;
+      }
+      .section-title h2 {
+        font-size: 1.8rem;
+        color: var(--xanh-la);
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+      .section-title h2 i {
+        font-size: 1.5rem;
+      }
+      .section-title p {
+        color: var(--nau-den);
+        opacity: 0.7;
+        margin-top: 4px;
+      }
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+      }
+      .feature-card {
+        background: var(--trang);
+        border-radius: var(--radius);
+        padding: 28px 20px;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        transition: var(--transition);
+        border: 1px solid transparent;
+      }
+      .feature-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+        border-color: var(--xam-be);
+      }
+      .feature-card .icon {
+        font-size: 2.6rem;
+        margin-bottom: 10px;
+        display: block;
+        color: var(--xanh-la);
+      }
+      .feature-card h3 {
+        font-size: 1.1rem;
+        color: var(--xanh-la);
+        margin-bottom: 6px;
+        font-weight: 700;
+      }
+      .feature-card p {
+        font-size: 0.9rem;
+        opacity: 0.75;
+        line-height: 1.5;
+      }
+
+      /* ===== ARTIFACTS ===== */
+      .artifacts-section {
+        padding: 50px 0;
+        background: var(--trang);
+      }
+      .artifact-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .artifact-card {
+        background: var(--kem-nga);
+        border-radius: var(--radius);
+        overflow: hidden;
+        border: 1px solid var(--xam-be);
+        transition: var(--transition);
+      }
+      .artifact-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      }
+      .artifact-card .artifact-img {
+        width: 100%;
+        height: 200px;
+        background: var(--xam-be);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+      }
+      .artifact-card .artifact-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .artifact-card .artifact-img .img-placeholder {
+        font-size: 3rem;
+        color: var(--xanh-la);
+        opacity: 0.5;
+      }
+      .artifact-card .artifact-body {
+        padding: 16px 18px;
+      }
+      .artifact-card .artifact-body h3 {
+        font-size: 1rem;
+        color: var(--xanh-la);
+        margin-bottom: 6px;
+        font-weight: 700;
+      }
+      .artifact-card .artifact-body p {
+        font-size: 0.85rem;
+        opacity: 0.8;
+        line-height: 1.6;
+      }
+      .artifact-card .artifact-body .detail-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 10px;
+        font-weight: 600;
+        font-size: 0.8rem;
+        color: var(--xanh-la);
+        transition: var(--transition);
+        cursor: pointer;
+      }
+      .artifact-card .artifact-body .detail-link:hover {
+        gap: 8px;
+        color: var(--hong-sen);
+      }
+
+      /* ===== HERITAGE ===== */
+      .heritage-section {
+        padding: 56px 0;
+        background: var(--kem-nga);
+        position: relative;
+        overflow: hidden;
+      }
+      .heritage-section::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 220px;
+        height: 220px;
+        background: radial-gradient(
+          circle,
+          rgba(78, 127, 82, 0.08) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .heritage-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 26px;
+      }
+      .heritage-card {
+        position: relative;
+        border-radius: var(--radius);
+        overflow: hidden;
+        background: var(--trang);
+        border: 1px solid var(--xam-be);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+      }
+      .heritage-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 14px 44px rgba(0, 0, 0, 0.12);
+        border-color: var(--xanh-la);
+      }
+      .heritage-card .heritage-img {
+        position: relative;
+        width: 100%;
+        height: 210px;
+        overflow: hidden;
+        background: linear-gradient(135deg, #d4e4d6 0%, #b8d4ba 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .heritage-card .heritage-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .heritage-card .heritage-img .img-placeholder {
+        font-size: 3.6rem;
+        color: var(--xanh-la);
+        opacity: 0.65;
+        transition: var(--transition);
+      }
+      .heritage-card:hover .heritage-img .img-placeholder {
+        transform: scale(1.12);
+        opacity: 0.9;
+      }
+      .heritage-card .heritage-img .heritage-badge {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: var(--vang-lua);
+        color: #fff;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        box-shadow: 0 2px 8px rgba(216, 166, 78, 0.4);
+        z-index: 2;
+      }
+      .heritage-card .heritage-img .heritage-badge i {
+        font-size: 0.65rem;
+        opacity: 1;
+      }
+      .heritage-card .heritage-body {
+        padding: 18px 20px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .heritage-card .heritage-body h3 {
+        font-size: 1.05rem;
+        color: var(--xanh-la);
+        margin-bottom: 8px;
+        font-weight: 700;
+        line-height: 1.35;
+      }
+      .heritage-card .heritage-body p {
+        font-size: 0.85rem;
+        opacity: 0.78;
+        line-height: 1.65;
+        flex: 1;
+      }
+      .heritage-card .heritage-meta {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 1px solid var(--xam-be);
+      }
+      .heritage-card .heritage-meta span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.76rem;
+        color: #999;
+        font-weight: 500;
+      }
+      .heritage-card .heritage-meta span i {
+        color: var(--xanh-la);
+        font-size: 0.8rem;
+      }
+      .heritage-card .heritage-readmore {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--xanh-la);
+        margin-top: 12px;
+        transition: var(--transition);
+        cursor: pointer;
+      }
+      .heritage-card .heritage-readmore:hover {
+        gap: 9px;
+        color: var(--hong-sen);
+      }
+      .heritage-card .heritage-readmore i {
+        font-size: 0.7rem;
+        transition: var(--transition);
+      }
+
+      /* ===== NEWS ===== */
+      .news-section {
+        padding: 56px 0;
+        background: var(--trang);
+        position: relative;
+      }
+      .news-section::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: var(--xam-be);
+      }
+      .news-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+      }
+      .news-featured {
+        position: relative;
+        border-radius: var(--radius);
+        overflow: hidden;
+        background: var(--kem-nga);
+        border: 1px solid var(--xam-be);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+      }
+      .news-featured:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+        border-color: var(--xanh-la);
+      }
+      .news-featured .nf-img {
+        position: relative;
+        width: 100%;
+        height: 260px;
+        overflow: hidden;
+        background: linear-gradient(135deg, #c9dbc9 0%, #a8c4a8 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .news-featured .nf-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .news-featured .nf-img .img-placeholder {
+        font-size: 4.5rem;
+        color: var(--xanh-la);
+        opacity: 0.5;
+      }
+      .news-featured .nf-img .nf-tag {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        background: var(--hong-sen);
+        color: #fff;
+        padding: 5px 14px;
+        border-radius: 20px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        box-shadow: 0 2px 10px rgba(217, 108, 138, 0.4);
+        z-index: 2;
+      }
+      .news-featured .nf-body {
+        padding: 22px 24px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .news-featured .nf-body .nf-date {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.78rem;
+        color: #999;
+        margin-bottom: 10px;
+        font-weight: 500;
+      }
+      .news-featured .nf-body .nf-date i {
+        color: var(--xanh-la);
+      }
+      .news-featured .nf-body h3 {
+        font-size: 1.25rem;
+        color: var(--nau-den);
+        margin-bottom: 10px;
+        font-weight: 700;
+        line-height: 1.35;
+      }
+      .news-featured .nf-body p {
+        font-size: 0.9rem;
+        opacity: 0.75;
+        line-height: 1.65;
+        flex: 1;
+      }
+      .news-featured .nf-body .nf-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--xanh-la);
+        margin-top: 16px;
+        transition: var(--transition);
+        cursor: pointer;
+      }
+      .news-featured .nf-body .nf-link:hover {
+        gap: 10px;
+        color: var(--hong-sen);
+      }
+      .news-featured .nf-body .nf-link i {
+        font-size: 0.75rem;
+        transition: var(--transition);
+      }
+
+      .news-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .news-item {
+        display: flex;
+        gap: 16px;
+        background: var(--kem-nga);
+        border-radius: var(--radius);
+        overflow: hidden;
+        border: 1px solid var(--xam-be);
+        transition: var(--transition);
+        padding: 14px 16px;
+        align-items: center;
+      }
+      .news-item:hover {
+        transform: translateX(4px);
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+        border-color: var(--xanh-la);
+      }
+      .news-item .ni-thumb {
+        width: 80px;
+        height: 80px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #d4e4d6, #b8d4ba);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        overflow: hidden;
+      }
+      .news-item .ni-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .news-item .ni-thumb .img-placeholder {
+        font-size: 1.8rem;
+        color: var(--xanh-la);
+        opacity: 0.7;
+      }
+      .news-item .ni-body {
+        flex: 1;
+        min-width: 0;
+      }
+      .news-item .ni-body .ni-date {
+        font-size: 0.72rem;
+        color: #999;
+        font-weight: 500;
+        margin-bottom: 4px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .news-item .ni-body .ni-date i {
+        color: var(--xanh-la);
+        font-size: 0.7rem;
+      }
+      .news-item .ni-body h4 {
+        font-size: 0.92rem;
+        color: var(--nau-den);
+        font-weight: 700;
+        margin-bottom: 4px;
+        line-height: 1.35;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .news-item .ni-body p {
+        font-size: 0.78rem;
+        opacity: 0.65;
+        line-height: 1.45;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .news-item .ni-body .ni-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--xanh-la);
+        margin-top: 4px;
+        transition: var(--transition);
+        cursor: pointer;
+      }
+      .news-item .ni-body .ni-link:hover {
+        gap: 7px;
+        color: var(--hong-sen);
+      }
+      .news-view-all {
+        text-align: center;
+        margin-top: 30px;
+      }
+      .news-view-all a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--xanh-la);
+        color: #fff;
+        padding: 10px 30px;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: var(--transition);
+        box-shadow: 0 4px 16px rgba(78, 127, 82, 0.25);
+      }
+      .news-view-all a:hover {
+        background: #3d6640;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(78, 127, 82, 0.35);
+      }
+      .news-view-all a i {
+        font-size: 0.8rem;
+        transition: var(--transition);
+      }
+      .news-view-all a:hover i {
+        transform: translateX(3px);
+      }
+
+      /* ===== FOOTER ===== */
+      .footer {
+        background: var(--xanh-la);
+        color: var(--trang);
+        padding: 36px 0 20px;
+        border-top: 4px solid var(--vang-lua);
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 24px;
+        margin-bottom: 20px;
+      }
+      .footer h4 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+        color: var(--vang-lua);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .footer h4 i {
+        font-size: 0.9rem;
+      }
+      .footer p,
+      .footer li {
+        font-size: 0.85rem;
+        opacity: 0.85;
+        line-height: 1.8;
+      }
+      .footer li i {
+        margin-right: 6px;
+        width: 16px;
+      }
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        padding-top: 14px;
+        text-align: center;
+        font-size: 0.8rem;
+        opacity: 0.7;
+      }
+
+      /* ===== MODAL ===== */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(4px);
+      }
+      .modal-overlay.active {
+        display: flex;
+      }
+      .modal-box {
+        background: var(--trang);
+        border-radius: var(--radius);
+        max-width: 440px;
+        width: 90%;
+        padding: 28px 24px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        animation: modalIn 0.3s ease;
+        position: relative;
+      }
+      @keyframes modalIn {
+        from {
+          opacity: 0;
+          transform: scale(0.96) translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+      .modal-box .close-modal {
+        position: absolute;
+        top: 12px;
+        right: 16px;
+        font-size: 1.4rem;
+        cursor: pointer;
+        color: var(--nau-den);
+        opacity: 0.5;
+        transition: var(--transition);
+        background: none;
+        border: none;
+      }
+      .modal-box .close-modal:hover {
+        opacity: 1;
+      }
+      .modal-box h3 {
+        color: var(--xanh-la);
+        margin-bottom: 12px;
+        font-size: 1.2rem;
+      }
+      .modal-box p {
+        margin-bottom: 14px;
+        opacity: 0.8;
+        font-size: 0.95rem;
+      }
+      .modal-box .btn-primary {
+        background: var(--xanh-la);
+        color: var(--trang);
+        border: none;
+        padding: 8px 24px;
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        font-size: 0.9rem;
+      }
+      .modal-box .btn-primary:hover {
+        background: #3d6640;
+      }
+      .modal-box .btn-secondary {
+        background: var(--kem-nga);
+        color: var(--nau-den);
+        border: 1px solid var(--xam-be);
+        padding: 8px 24px;
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        font-size: 0.9rem;
+        margin-left: 8px;
+      }
+      .modal-box .btn-secondary:hover {
+        background: var(--xam-be);
+      }
+
+      /* ===== AUTH MODAL ===== */
+      .auth-modal .modal-box {
+        max-width: 480px;
+        width: 94%;
+        padding: 32px 28px;
+      }
+      .auth-modal .modal-header {
+        text-align: center;
+        margin-bottom: 22px;
+      }
+      .auth-modal .modal-header .modal-icon {
+        font-size: 2.8rem;
+        margin-bottom: 8px;
+        display: block;
+      }
+      .auth-modal .modal-header h3 {
+        font-size: 1.4rem;
+        color: var(--xanh-la);
+        margin-bottom: 2px;
+      }
+      .auth-modal .modal-header .modal-sub {
+        color: var(--nau-den);
+        opacity: 0.55;
+        font-size: 0.88rem;
+      }
+      .auth-modal .form-group {
+        margin-bottom: 15px;
+      }
+      .auth-modal .form-group label {
+        display: block;
+        font-weight: 600;
+        font-size: 0.85rem;
+        margin-bottom: 5px;
+        color: var(--nau-den);
+      }
+      .auth-modal .form-group .required {
+        color: var(--hong-sen);
+        margin-left: 2px;
+      }
+      .auth-modal .form-group input,
+      .auth-modal .form-group select {
+        width: 100%;
+        padding: 11px 14px;
+        border: 1.5px solid var(--xam-be);
+        border-radius: 8px;
+        font-size: 0.92rem;
+        font-family: inherit;
+        background: var(--trang);
+        transition: var(--transition);
+        color: var(--nau-den);
+      }
+      .auth-modal .form-group input:focus,
+      .auth-modal .form-group select:focus {
+        outline: none;
+        border-color: var(--xanh-la);
+        box-shadow: 0 0 0 3px rgba(78, 127, 82, 0.15);
+      }
+      .auth-modal .form-group input[readonly] {
+        background: var(--kem-nga);
+        color: #888;
+        cursor: not-allowed;
+      }
+      .auth-modal .form-group.error input,
+      .auth-modal .form-group.error select {
+        border-color: var(--hong-sen);
+      }
+      .auth-modal .form-group .error-text {
+        color: var(--hong-sen);
+        font-size: 0.78rem;
+        margin-top: 4px;
+        display: none;
+      }
+      .auth-modal .form-group .error-text.show {
+        display: block;
+      }
+      .input-wrapper {
+        position: relative;
+      }
+      .input-wrapper input {
+        padding-right: 42px !important;
+      }
+      .input-wrapper .toggle-pw {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #aaa;
+        font-size: 1rem;
+        padding: 4px;
+        transition: var(--transition);
+      }
+      .input-wrapper .toggle-pw:hover {
+        color: var(--xanh-la);
+      }
+      .code-row {
+        display: flex;
+        gap: 10px;
+      }
+      .code-row input {
+        flex: 1;
+        min-width: 0;
+      }
+      .btn-send-code {
+        flex-shrink: 0;
+        padding: 0 18px;
+        height: 44px;
+        background: var(--xanh-la);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.82rem;
+        cursor: pointer;
+        transition: var(--transition);
+        white-space: nowrap;
+        font-family: inherit;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .btn-send-code:hover:not(:disabled) {
+        background: #3d6640;
+      }
+      .btn-send-code:disabled {
+        background: var(--xam-be);
+        color: #999;
+        cursor: not-allowed;
+      }
+      .code-hint {
+        font-size: 0.75rem;
+        color: #999;
+        margin-top: 5px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .code-hint i {
+        color: var(--xanh-la);
+      }
+      .auth-btn-submit {
+        width: 100%;
+        padding: 12px;
+        background: var(--xanh-la);
+        color: #fff;
+        border: none;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: var(--transition);
+        font-family: inherit;
+        margin-top: 6px;
+      }
+      .auth-btn-submit:hover {
+        background: #3d6640;
+      }
+      .auth-footer {
+        text-align: center;
+        margin-top: 16px;
+        font-size: 0.85rem;
+        color: var(--nau-den);
+        opacity: 0.65;
+      }
+      .auth-footer a {
+        color: var(--xanh-la);
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .auth-footer a:hover {
+        text-decoration: underline;
+      }
+      .auth-success-view {
+        text-align: center;
+        padding: 20px 0;
+        display: none;
+      }
+      .auth-success-view.active {
+        display: block;
+      }
+      .auth-success-view .success-icon {
+        font-size: 4rem;
+        color: var(--xanh-la);
+        margin-bottom: 10px;
+      }
+      .auth-success-view h3 {
+        color: var(--xanh-la);
+        font-size: 1.3rem;
+        margin-bottom: 6px;
+      }
+      .auth-success-view p {
+        opacity: 0.65;
+        font-size: 0.92rem;
+        margin-bottom: 18px;
+      }
+
+      /* ===== VISIT MODAL ===== */
+      .visit-modal .modal-box {
+        max-width: 620px;
+        width: 94%;
+        padding: 32px 34px;
+      }
+      .visit-modal .modal-box h3 {
+        font-size: 1.5rem;
+        margin-bottom: 4px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .visit-modal .modal-box .sub-title {
+        color: var(--nau-den);
+        opacity: 0.6;
+        font-size: 0.9rem;
+        margin-bottom: 18px;
+      }
+      .visit-modal .form-group {
+        margin-bottom: 14px;
+      }
+      .visit-modal .form-group label {
+        display: block;
+        font-weight: 600;
+        font-size: 0.85rem;
+        margin-bottom: 4px;
+        color: var(--nau-den);
+      }
+      .visit-modal .form-group .required {
+        color: var(--hong-sen);
+        margin-left: 2px;
+      }
+      .visit-modal .form-group input,
+      .visit-modal .form-group textarea {
+        width: 100%;
+        padding: 10px 14px;
+        border: 1.5px solid var(--xam-be);
+        border-radius: 8px;
+        font-size: 0.95rem;
+        font-family: inherit;
+        background: var(--trang);
+        transition: var(--transition);
+        color: var(--nau-den);
+      }
+      .visit-modal .form-group input:focus,
+      .visit-modal .form-group textarea:focus {
+        outline: none;
+        border-color: var(--xanh-la);
+        box-shadow: 0 0 0 3px rgba(78, 127, 82, 0.2);
+      }
+      .visit-modal .form-group textarea {
+        resize: vertical;
+        min-height: 65px;
+      }
+      .visit-modal .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .visit-modal .form-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 18px;
+        flex-wrap: wrap;
+      }
+      .visit-modal .form-actions .btn-primary {
+        padding: 10px 32px;
+        font-size: 1rem;
+        background: var(--xanh-la);
+        color: #fff;
+        border: none;
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .visit-modal .form-actions .btn-primary:hover {
+        background: #3d6640;
+      }
+      .visit-modal .form-actions .btn-secondary {
+        padding: 10px 24px;
+        font-size: 1rem;
+        background: var(--kem-nga);
+        color: var(--nau-den);
+        border: 1px solid var(--xam-be);
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .visit-modal .form-actions .btn-secondary:hover {
+        background: var(--xam-be);
+      }
+      .visit-modal .success-msg {
+        display: none;
+        text-align: center;
+        padding: 20px 0;
+      }
+      .visit-modal .success-msg .big-icon {
+        font-size: 4rem;
+        display: block;
+        margin-bottom: 12px;
+        color: var(--xanh-la);
+      }
+      .visit-modal .success-msg h3 {
+        color: var(--xanh-la);
+        font-size: 1.4rem;
+      }
+      .visit-modal .success-msg p {
+        opacity: 0.7;
+      }
+      .visit-modal .form-content.hidden {
+        display: none;
+      }
+      .visit-modal .success-msg.active {
+        display: block;
+      }
+      .hidden {
+        display: none !important;
+      }
+
+      /* ===== SCROLL ANIMATION ===== */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal:nth-child(2) {
+        transition-delay: 0.08s;
+      }
+      .reveal:nth-child(3) {
+        transition-delay: 0.16s;
+      }
+      .reveal:nth-child(4) {
+        transition-delay: 0.24s;
+      }
+      .reveal:nth-child(5) {
+        transition-delay: 0.32s;
+      }
+      .reveal:nth-child(6) {
+        transition-delay: 0.4s;
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 1024px) {
+        .banner-slideshow {
+          height: 70vh;
+          max-height: 700px;
+        }
+        .banner-slideshow .slide .slide-content h2 {
+          font-size: 2.4rem;
+        }
+        .feature-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .artifact-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .heritage-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .news-layout {
+          grid-template-columns: 1fr;
+        }
+        .news-featured .nf-img {
+          height: 220px;
+        }
+        .intro-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 32px;
+        }
+        .intro-content h1 {
+          font-size: 2.2rem;
+        }
+        .search-box {
+          max-width: 560px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .search-suggestions {
+          justify-content: center;
+        }
+        .intro-stats {
+          justify-content: center;
+        }
+        .intro-image .intro-real-img {
+          max-width: 480px;
+          margin: 0 auto;
+        }
+        .nav-menu {
+          gap: 2px;
+        }
+        .nav-menu > li > a,
+        .nav-menu > li > span {
+          padding: 6px 10px;
+          font-size: 0.8rem;
+        }
+        .brand-name {
+          font-size: 1.1rem;
+        }
+        .logo-icon {
+          width: 40px;
+          height: 40px;
+        }
+      }
+      @media (max-width: 768px) {
+        .header-inner {
+          flex-wrap: wrap;
+          height: auto;
+          padding: 8px 0;
+          gap: 6px;
+        }
+        .header {
+          height: auto;
+        }
+        .brand {
+          gap: 8px;
+        }
+        .brand-name {
+          font-size: 1rem;
+        }
+        .brand-name small {
+          font-size: 0.55rem;
+        }
+        .logo-icon {
+          width: 36px;
+          height: 36px;
+        }
+        .nav-menu {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 0;
+          order: 3;
+          width: 100%;
+          border-top: 1px solid var(--xam-be);
+          padding-top: 6px;
+          margin-top: 4px;
+        }
+        .nav-menu > li > a,
+        .nav-menu > li > span {
+          padding: 4px 8px;
+          font-size: 0.75rem;
+        }
+        .header-right {
+          gap: 6px;
+        }
+        .auth-item a {
+          padding: 3px 10px;
+          font-size: 0.7rem;
+        }
+        .profile-menu .profile-icon {
+          padding: 3px 8px;
+          font-size: 0.7rem;
+        }
+        .lang-toggle button {
+          padding: 2px 8px;
+          font-size: 0.65rem;
+        }
+        .banner-slideshow {
+          height: 50vh;
+          min-height: 350px;
+        }
+        .banner-slideshow .slide .slide-content {
+          bottom: 60px;
+        }
+        .banner-slideshow .slide .slide-content h2 {
+          font-size: 1.8rem;
+        }
+        .banner-slideshow .slide .slide-content p {
+          font-size: 0.95rem;
+        }
+        .intro-section {
+          padding: 48px 0 40px;
+        }
+        .intro-content h1 {
+          font-size: 1.8rem;
+        }
+        .intro-grid {
+          gap: 24px;
+        }
+        .search-box {
+          border-radius: 12px;
+        }
+        .search-box button {
+          padding: 0 18px;
+          font-size: 0.85rem;
+        }
+        .feature-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 14px;
+        }
+        .feature-card {
+          padding: 20px 14px;
+        }
+        .artifact-grid {
+          grid-template-columns: 1fr;
+        }
+        .heritage-grid {
+          grid-template-columns: 1fr;
+        }
+        .heritage-card .heritage-img {
+          height: 180px;
+        }
+        .news-item {
+          flex-direction: column;
+          text-align: center;
+        }
+        .news-item .ni-thumb {
+          width: 100%;
+          height: 100px;
+          border-radius: 10px;
+        }
+        .news-item .ni-thumb .img-placeholder {
+          font-size: 2.4rem;
+        }
+        .news-item .ni-body h4 {
+          white-space: normal;
+        }
+        .visit-modal .form-row {
+          grid-template-columns: 1fr;
+        }
+        .visit-modal .modal-box {
+          padding: 20px 16px;
+        }
+        .visit-modal .form-actions {
+          flex-direction: column;
+        }
+        .visit-modal .form-actions .btn-primary,
+        .visit-modal .form-actions .btn-secondary {
+          width: 100%;
+          text-align: center;
+          justify-content: center;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .dropdown {
+          min-width: 160px;
+        }
+        .profile-dropdown {
+          right: auto;
+          left: 50%;
+          transform: translateX(-50%) translateY(6px);
+        }
+        .profile-menu:hover .profile-dropdown {
+          transform: translateX(-50%) translateY(0);
+        }
+      }
+      @media (max-width: 480px) {
+        .intro-content h1 {
+          font-size: 1.5rem;
+        }
+        .intro-content .intro-desc {
+          font-size: 0.9rem;
+        }
+        .search-box {
+          border-radius: 10px;
+        }
+        .search-box input {
+          padding: 12px 0;
+          font-size: 0.88rem;
+        }
+        .search-box button {
+          padding: 0 14px;
+          font-size: 0.8rem;
+        }
+        .search-suggestions {
+          gap: 6px;
+        }
+        .intro-stats {
+          gap: 18px;
+        }
+        .intro-stat .stat-num {
+          font-size: 1.3rem;
+        }
+        .intro-stat .stat-label {
+          font-size: 0.7rem;
+        }
+        .feature-grid {
+          grid-template-columns: 1fr;
+        }
+        .brand-name {
+          font-size: 0.9rem;
+        }
+        .logo-icon {
+          width: 32px;
+          height: 32px;
+        }
+        .section-title h2 {
+          font-size: 1.3rem;
+        }
+        .banner-slideshow {
+          height: 40vh;
+          min-height: 280px;
+        }
+        .banner-slideshow .slide .slide-content {
+          bottom: 50px;
+          padding: 12px;
+        }
+        .banner-slideshow .slide .slide-content h2 {
+          font-size: 1.4rem;
+        }
+        .banner-slideshow .slide .slide-content p {
+          font-size: 0.8rem;
+        }
+        .auth-modal .modal-box {
+          padding: 22px 18px;
+        }
+        .auth-modal .modal-header h3 {
+          font-size: 1.2rem;
+        }
+        .heritage-card .heritage-body h3 {
+          font-size: 0.95rem;
+        }
+        .news-featured .nf-body h3 {
+          font-size: 1.05rem;
+        }
+        .news-item .ni-body p {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+      <div class="container header-inner">
+        <div class="brand">
+          <div class="logo-icon">
+            <img src="../uploads/1.Logobaotang.png" alt="Logo" />
+          </div>
+          <div class="brand-name">
+            <span data-key="site_name">Bảo Tàng Đồng Tháp</span>
+            <small data-key="site_sub">Dong Thap Museum</small>
+          </div>
+        </div>
+        <ul class="nav-menu">
+          <li>
+            <a href="#" data-key="home"
+              ><i class="fas fa-home"></i> Trang chủ</a
+            >
+          </li>
+          <li>
+            <span
+              ><i class="fas fa-info-circle"></i>
+              <span data-key="intro_menu">Giới thiệu</span>
+              <i class="fas fa-chevron-down"></i
+            ></span>
+            <ul class="dropdown">
+              <li>
+                <a href="#"
+                  ><i class="fas fa-handshake"></i>
+                  <span data-key="intro_greeting">Lời giới thiệu</span></a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="fas fa-timeline"></i>
+                  <span data-key="intro_history"
+                    >Lịch sử hình thành &amp; phát triển</span
+                  ></a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="fas fa-users"></i>
+                  <span data-key="intro_leadership"
+                    >Ban lãnh đạo bảo tàng</span
+                  ></a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <span
+              ><i class="fas fa-archway"></i>
+              <span data-key="exhibit">Trưng bày</span>
+              <i class="fas fa-chevron-down"></i
+            ></span>
+            <ul class="dropdown">
+              <li>
+                <a href="#"
+                  ><i class="fas fa-building"></i>
+                  <span data-key="exhibit_arch"
+                    >Kiến trúc lịch sử và văn hóa</span
+                  ></a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="fas fa-history"></i>
+                  <span data-key="exhibit_history">Theo dòng lịch sử</span></a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="fas fa-boxes-stacked"></i>
+                  <span data-key="exhibit_items">Danh sách hiện vật</span></a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="fas fa-images"></i>
+                  <span data-key="exhibit_exhibitions"
+                    >Danh sách triển lãm</span
+                  ></a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="fas fa-map-pin"></i>
+                  <span data-key="exhibit_sites">Khu di tích</span></a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <span
+              ><i class="fas fa-newspaper"></i>
+              <span data-key="news">Tin tức</span>
+              <i class="fas fa-chevron-down"></i
+            ></span>
+            <ul class="dropdown">
+              <li>
+                <a href="#"
+                  ><i class="fas fa-shield-halved"></i>
+                  <span data-key="news_preserve"
+                    >Hoạt động bảo vệ tàn tích</span
+                  ></a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="fas fa-flag"></i>
+                  <span data-key="news_domestic">Tin tức trong nước</span></a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="fas fa-globe"></i>
+                  <span data-key="news_international"
+                    >Tin tức ngoài nước</span
+                  ></a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <span
+              ><i class="fas fa-map-pin"></i>
+              <span data-key="visit_menu">Tham quan</span>
+              <i class="fas fa-chevron-down"></i
+            ></span>
+            <ul class="dropdown">
+              <li>
+                <a href="#"
+                  ><i class="fas fa-list-check"></i>
+                  <span data-key="visit_rules">Nội quy tham quan</span></a
+                >
+              </li>
+              <!-- Đã xóa mục "Giờ mở cửa" theo yêu cầu -->
+              <li>
+                <a href="#" id="visitRegisterLink"
+                  ><i class="fas fa-ticket" style="color: var(--hong-sen)"></i>
+                  <span data-key="visit_register">Đăng ký tham quan</span></a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="header-right">
+          <div class="lang-toggle" id="langToggle">
+            <button class="active" data-lang="vi">VI</button>
+            <button data-lang="en">EN</button>
+          </div>
+          <div class="auth-item" id="registerNav">
+            <a href="#" class="btn-register-nav" data-key="register">Đăng ký</a>
+          </div>
+          <div class="auth-item" id="loginNav">
+            <a href="#" class="btn-login-nav" data-key="login">Đăng nhập</a>
+          </div>
+          <div class="profile-menu hidden" id="profileMenu">
+            <span class="profile-icon">
+              <i class="fas fa-user-circle"></i>
+              <span id="profileDisplayName">User</span>
+              <i class="fas fa-chevron-down" style="font-size: 0.5rem"></i>
+            </span>
+            <ul class="profile-dropdown">
+              <li class="dropdown-title">
+                <i class="fas fa-id-card"></i>
+                <span data-key="profile">Hồ sơ cá nhân</span>
+              </li>
+              <li>
+                <a href="#" id="profileInfoLink"
+                  ><i class="fas fa-user"></i>
+                  <span data-key="profile_info">Thông tin cá nhân</span></a
+                >
+              </li>
+              <li>
+                <a href="#" id="profileBookingLink"
+                  ><i class="fas fa-ticket"></i>
+                  <span data-key="profile_booking">Đăng ký tham quan</span></a
+                >
+              </li>
+              <li>
+                <a href="#" id="profileChangePwLink"
+                  ><i class="fas fa-key"></i>
+                  <span data-key="profile_password">Đổi mật khẩu</span></a
+                >
+              </li>
+              <li class="logout-item">
+                <a href="#" id="logoutBtn"
+                  ><i class="fas fa-right-from-bracket"></i>
+                  <span data-key="logout">Đăng xuất</span></a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===== BANNER ===== -->
+    <div class="banner-slideshow" id="bannerSlideshow">
+      <div class="slide active">
+        <img src="../uploads/2.Tongquanbaotang.png" alt="Bảo tàng" />
+        <div class="slide-content">
+          <h2 data-key="b0t">Bảo tàng Đồng Tháp</h2>
+          <p data-key="b0d">
+            Khám phá kho tàng văn hóa - lịch sử vùng đất sen hồng
+          </p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="../uploads/3.Datsenhong.png" alt="Sen hồng" />
+        <div class="slide-content">
+          <h2 data-key="b1t">Sen hồng Đồng Tháp</h2>
+          <p data-key="b1d">
+            Biểu tượng của vùng đất giàu truyền thống và nghĩa tình
+          </p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="../uploads/5.Gothap.png" alt="Gò Tháp" />
+        <div class="slide-content">
+          <h2 data-key="b2t">Khu di tích Gò Tháp</h2>
+          <p data-key="b2d">Dấu ấn lịch sử hào hùng của dân tộc</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="../uploads/4.Tramchim.png" alt="Tràm Chim" />
+        <div class="slide-content">
+          <h2 data-key="b3t">Vườn Quốc gia Tràm Chim</h2>
+          <p data-key="b3d">Hệ sinh thái đa dạng và sếu đầu đỏ quý hiếm</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="../uploads/6.Langhoa.png" alt="Sa Đéc" />
+        <div class="slide-content">
+          <h2 data-key="b4t">Làng hoa Sa Đéc</h2>
+          <p data-key="b4d">Bốn mùa rực rỡ sắc hương hoa</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="../uploads/7.Vanhoaoceo.png" alt="Óc Eo" />
+        <div class="slide-content">
+          <h2 data-key="b5t">Văn hóa Óc Eo</h2>
+          <p data-key="b5d">Những cổ vật quý giá ngàn năm tuổi</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="../uploads/8.Canhdonglua.png" alt="Lúa" />
+        <div class="slide-content">
+          <h2 data-key="b6t">Cánh đồng lúa Đồng Tháp</h2>
+          <p data-key="b6d">Hương lúa nội đồng, tình đất phương Nam</p>
+        </div>
+      </div>
+      <div class="dots">
+        <span class="dot active" data-index="0"></span
+        ><span class="dot" data-index="1"></span
+        ><span class="dot" data-index="2"></span>
+        <span class="dot" data-index="3"></span
+        ><span class="dot" data-index="4"></span
+        ><span class="dot" data-index="5"></span
+        ><span class="dot" data-index="6"></span>
+      </div>
+    </div>
+
+    <!-- ===== INTRO ===== -->
+    <section class="intro-section">
+      <div class="container intro-grid">
+        <div class="intro-content">
+          <h1 data-key="intro_title">
+            Chào mừng đến với<br /><span>Bảo tàng Đồng Tháp</span>
+          </h1>
+          <p class="intro-desc" data-key="intro_desc">
+            Khám phá lịch sử, văn hóa và con người vùng đất sen hồng qua những
+            hiện vật và câu chuyện đầy cảm hứng.
+          </p>
+          <div class="search-box">
+            <span class="search-icon-left"><i class="fas fa-search"></i></span>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Nhập tên hiện vật, cổ vật, di tích cần tìm..."
+            />
+            <button id="searchBtn">
+              <span data-key="search_btn">Tìm kiếm</span>
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+          <div class="search-suggestions">
+            <span
+              ><i class="fas fa-fire"></i>
+              <span data-key="ss1">Tượng Vishnu</span></span
+            >
+            <span
+              ><i class="fas fa-fire"></i>
+              <span data-key="ss2">Gốm Óc Eo</span></span
+            >
+            <span
+              ><i class="fas fa-fire"></i>
+              <span data-key="ss3">Tiền cổ Nguyễn</span></span
+            >
+            <span
+              ><i class="fas fa-fire"></i>
+              <span data-key="ss4">Kiếm Đông Sơn</span></span
+            >
+            <span
+              ><i class="fas fa-fire"></i>
+              <span data-key="ss5">Nhẫn Phù Nam</span></span
+            >
+          </div>
+          <div class="intro-stats">
+            <div class="intro-stat">
+              <div class="stat-num">2,500+</div>
+              <div class="stat-label" data-key="stat1">Hiện vật</div>
+            </div>
+            <div class="intro-stat">
+              <div class="stat-num">150+</div>
+              <div class="stat-label" data-key="stat2">Năm lịch sử</div>
+            </div>
+            <div class="intro-stat">
+              <div class="stat-num">50+</div>
+              <div class="stat-label" data-key="stat3">Triển lãm</div>
+            </div>
+            <div class="intro-stat">
+              <div class="stat-num">100K+</div>
+              <div class="stat-label" data-key="stat4">Lượt tham quan</div>
+            </div>
+          </div>
+        </div>
+        <div class="intro-image">
+          <img
+            src="../uploads/9.Thamquanbaotang.png"
+            alt="Bảo tàng Đồng Tháp"
+            class="intro-real-img"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FEATURES ===== -->
+    <section class="features">
+      <div class="container">
+        <div class="section-title">
+          <h2>
+            <i class="fas fa-landmark"></i>
+            <span data-key="features_title">Khám phá Bảo tàng</span>
+          </h2>
+          <p data-key="features_sub">Những trải nghiệm đặc sắc dành cho bạn</p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <i class="fas fa-palette icon"></i>
+            <h3 data-key="f1t">Trưng bày đa dạng</h3>
+            <p data-key="f1d">
+              Hàng nghìn hiện vật quý giá qua các thời kỳ lịch sử, văn hóa và
+              kiến trúc.
+            </p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-newspaper icon"></i>
+            <h3 data-key="f2t">Tin tức cập nhật</h3>
+            <p data-key="f2d">
+              Thông tin mới nhất về các hoạt động bảo tồn và sự kiện văn hóa
+              trong và ngoài nước.
+            </p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-map-location-dot icon"></i>
+            <h3 data-key="f3t">Tham quan dễ dàng</h3>
+            <p data-key="f3d">
+              Hướng dẫn chi tiết, nội quy và giờ mở cửa để bạn có chuyến thăm
+              trọn vẹn.
+            </p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-ticket icon"></i>
+            <h3 data-key="f4t">Đăng ký tham quan</h3>
+            <p data-key="f4d">
+              Đăng ký tham quan nhanh chóng, tiện lợi ngay trên website.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ARTIFACTS ===== -->
+    <section class="artifacts-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>
+            <i class="fas fa-boxes-stacked"></i>
+            <span data-key="artifacts_title">Hiện vật tiêu biểu</span>
+          </h2>
+          <p data-key="artifacts_sub">
+            Những cổ vật quý giá đang được trưng bày
+          </p>
+        </div>
+        <div class="artifact-grid">
+          <!-- Artifact 1 -->
+          <div class="artifact-card">
+            <div class="artifact-img">
+              <img src="../uploads/11.Diagomoceo.png" alt="Đĩa gốm Óc Eo" />
+            </div>
+            <div class="artifact-body">
+              <h3 data-key="a1t">Đĩa gốm Óc Eo thế kỷ VII</h3>
+              <p data-key="a1d">
+                Đĩa gốm được khai quật tại di tích Óc Eo, An Giang, mang họa
+                tiết hoa sen tinh xảo, thể hiện sự giao thoa văn hóa giữa Ấn Độ
+                giáo và nghệ thuật Champa cổ đại. Đây là một trong những hiện
+                vật tiêu biểu cho trình độ kỹ thuật gốm sứ và tín ngưỡng tôn
+                giáo của cư dân Phù Nam vào thế kỷ VII, minh chứng cho một nền
+                văn minh sông nước rực rỡ từng tỏa sáng ở vùng Đồng bằng sông
+                Cửu Long.
+              </p>
+              <a href="#" class="detail-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Artifact 2 -->
+          <div class="artifact-card">
+            <div class="artifact-img">
+              <img
+                src="../uploads/10.Tuongthanvishnu.png"
+                alt="Tượng thần Vishnu"
+              />
+            </div>
+            <div class="artifact-body">
+              <h3 data-key="a2t">Tượng thần Vishnu bằng đá</h3>
+              <p data-key="a2d">
+                Tượng đá sa thạch cao 1,2m, có niên đại khoảng thế kỷ VIII, miêu
+                tả thần Vishnu trong tư thế uy nghi với bốn cánh tay cầm các
+                pháp khí biểu trưng cho quyền năng tối thượng: đĩa Sudarshana,
+                dùi cui Kaumodaki, tù và Panchajanya và hoa sen. Phát hiện tại
+                khuôn viên tháp Gò Tháp, bức tượng là một kiệt tác điêu khắc,
+                phản ánh ảnh hưởng sâu sắc của văn hóa Ấn Độ đối với tín ngưỡng
+                và nghệ thuật thời kỳ Phù Nam – Óc Eo.
+              </p>
+              <a href="#" class="detail-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Artifact 3 -->
+          <div class="artifact-card">
+            <div class="artifact-img">
+              <img
+                src="../uploads/12.Tienthoinguyen.png"
+                alt="Tiền cổ thời Nguyễn"
+              />
+            </div>
+            <div class="artifact-body">
+              <h3 data-key="a3t">Bộ sưu tập tiền cổ thời Nguyễn</h3>
+              <p data-key="a3d">
+                Bộ sưu tập gồm hơn 500 đồng tiền xu bằng đồng và vàng, trải dài
+                từ triều Gia Long (1802) đến Bảo Đại (1945), là bằng chứng sống
+                động về nền kinh tế thương mại sầm uất tại vùng Đồng Tháp Mười
+                trong suốt thế kỷ XIX – XX. Mỗi đồng tiền không chỉ là phương
+                tiện giao dịch mà còn mang giá trị nghệ thuật khắc họa hình ảnh
+                rồng, phượng và các biểu trưng hoàng gia, phản ánh sự thịnh
+                vượng và giao lưu văn hóa thời kỳ nhà Nguyễn.
+              </p>
+              <a href="#" class="detail-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Artifact 4 -->
+          <div class="artifact-card">
+            <div class="artifact-img">
+              <img
+                src="../uploads/13.Nhanvangphunam.png"
+                alt="Nhẫn vàng Phù Nam"
+              />
+            </div>
+            <div class="artifact-body">
+              <h3 data-key="a4t">Nhẫn vàng thời Phù Nam</h3>
+              <p data-key="a4d">
+                Chiếc nhẫn vàng 18K nguyên khối, được chạm khắc hình rắn Naga
+                cuộn tròn uyển chuyển – biểu tượng thiêng liêng của quyền lực
+                vương giả trong văn hóa Phù Nam. Niên đại khoảng thế kỷ III – VI
+                sau Công nguyên, chiếc nhẫn được tìm thấy trong một ngôi mộ cổ
+                tại khu vực Óc Eo, cho thấy trình độ luyện kim và tinh thần thẩm
+                mỹ tinh tế của cư dân bản địa, đồng thời là minh chứng cho sự
+                giàu có và uy quyền của tầng lớp quý tộc thời bấy giờ.
+              </p>
+              <a href="#" class="detail-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Artifact 5 -->
+          <div class="artifact-card">
+            <div class="artifact-img">
+              <img
+                src="../uploads/14.Biakychua.png"
+                alt="Bia ký chùa Kiến An"
+              />
+            </div>
+            <div class="artifact-body">
+              <h3 data-key="a5t">Bia ký chùa Kiến An</h3>
+              <p data-key="a5d">
+                Tấm bia đá cổ được dựng vào năm 1845, ghi chép chi tiết quá
+                trình xây dựng và trùng tu chùa Kiến An dưới triều vua Thiệu
+                Trị. Văn bia khắc chữ Hán với nét chữ mạch lạc, cung cấp những
+                tư liệu vô giá về công cuộc khai hoang, lập ấp cũng như đời sống
+                tín ngưỡng của cư dân người Việt tại vùng đất Đồng Tháp vào giữa
+                thế kỷ XIX, góp phần dựng lại bức tranh lịch sử xã hội thời kỳ
+                Nam Bộ thuộc địa.
+              </p>
+              <a href="#" class="detail-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Artifact 6 -->
+          <div class="artifact-card">
+            <div class="artifact-img">
+              <img
+                src="../uploads/15.Kiemdongdongson.png"
+                alt="Kiếm đồng Đông Sơn"
+              />
+            </div>
+            <div class="artifact-body">
+              <h3 data-key="a6t">Kiếm đồng thời Đông Sơn</h3>
+              <p data-key="a6d">
+                Thanh kiếm đồng ngắn với cán được khắc hình thuyền chiến và hoa
+                văn hình học đặc trưng, có niên đại khoảng thế kỷ III – II trước
+                Công nguyên. Đây là một phát hiện quan trọng, chứng minh sự giao
+                thương và giao lưu văn hóa mạnh mẽ giữa cư dân Bắc Bộ và các
+                cộng đồng cư dân ở Nam Bộ từ rất sớm. Thanh kiếm không chỉ là vũ
+                khí mà còn là biểu tượng cho sức mạnh và uy tín của các thủ lĩnh
+                thời kỳ tiền sử.
+              </p>
+              <a href="#" class="detail-link"
+                >Xem chi tiết <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HERITAGE (DI SẢN VĂN HÓA) ===== -->
+    <section class="heritage-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>
+            <i class="fas fa-torii-gate"></i>
+            <span data-key="heritage_title">Di sản văn hóa</span>
+          </h2>
+          <p data-key="heritage_sub">
+            Những di tích, làng nghề và giá trị văn hóa đặc sắc của vùng đất sen
+            hồng
+          </p>
+        </div>
+        <div class="heritage-grid">
+          <!-- Gò Tháp -->
+          <div class="heritage-card reveal">
+            <div class="heritage-img">
+              <img
+                src="../uploads/16.Khuditichgothap.png"
+                alt="Khu di tích Gò Tháp"
+              />
+              <span class="heritage-badge"
+                ><i class="fas fa-star"></i>
+                <span data-key="h_badge_nat">Di tích quốc gia</span></span
+              >
+            </div>
+            <div class="heritage-body">
+              <h3 data-key="h1t">Khu di tích Gò Tháp</h3>
+              <p data-key="h1d">
+                Khu di tích quốc gia đặc biệt Gò Tháp là một quần thể khảo cổ
+                học quan trọng bậc nhất tại Đồng bằng sông Cửu Long, lưu giữ dấu
+                ấn rực rỡ của nền văn hóa Óc Eo từ thế kỷ I đến thế kỷ VII. Tại
+                đây, du khách có thể chiêm ngưỡng những ngôi tháp cổ uy nghi,
+                các khu mộ táng và hệ thống kênh đào cổ đại được xây dựng với kỹ
+                thuật tiên tiến, phản ánh một nền văn minh tiên tiến từng phát
+                triển hưng thịnh. Mỗi hiện vật, mỗi dấu tích đều kể những câu
+                chuyện về tín ngưỡng, thương mại và đời sống tinh thần của người
+                xưa, góp phần tạo dựng nên bản sắc văn hóa đặc thù cho vùng đất
+                Sen Hồng.
+              </p>
+              <div class="heritage-meta">
+                <span
+                  ><i class="fas fa-location-dot"></i>
+                  <span data-key="h1_loc">Tháp Mười, Đồng Tháp</span></span
+                >
+                <span
+                  ><i class="fas fa-calendar"></i>
+                  <span data-key="h1_era">Thế kỷ I - VII</span></span
+                >
+              </div>
+              <a href="#" class="heritage-readmore"
+                ><span data-key="read_more">Tìm hiểu thêm</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Tượng đài Tập kết 1954 -->
+          <div class="heritage-card reveal">
+            <div
+              class="heritage-img"
+              style="background: linear-gradient(135deg, #e8d5b8, #d4c0a0)"
+            >
+              <img
+                src="../uploads/17.Tuongdaitapket.png"
+                alt="Tượng đài sự kiện Tập kết năm 1954"
+              />
+              <span class="heritage-badge"
+                ><i class="fas fa-star"></i>
+                <span data-key="h_badge_hist">Di tích lịch sử</span></span
+              >
+            </div>
+            <div class="heritage-body">
+              <h3 data-key="h2t">Tượng đài sự kiện Tập kết năm 1954</h3>
+              <p data-key="h2d">
+                Tượng đài sự kiện Tập kết năm 1954 là một công trình tưởng niệm
+                quan trọng, được xây dựng để ghi nhớ sự kiện lịch sử khi hàng
+                nghìn người dân miền Bắc di cư vào Nam sau Hiệp định Genève.
+                Tượng đài được thiết kế với hình ảnh những con thuyền chở đầy
+                người và hàng hóa, biểu tượng cho tinh thần kiên cường, hy sinh
+                và khát vọng tự do của nhân dân Việt Nam. Đây không chỉ là một
+                địa điểm lịch sử mà còn là nơi giáo dục truyền thống yêu nước,
+                nhắc nhở thế hệ trẻ về những giá trị lịch sử và tinh thần đoàn
+                kết dân tộc.
+              </p>
+              <div class="heritage-meta">
+                <span
+                  ><i class="fas fa-location-dot"></i>
+                  <span data-key="h2_loc">Cao Lãnh, Đồng Tháp</span></span
+                >
+                <span
+                  ><i class="fas fa-calendar"></i>
+                  <span data-key="h2_era">Năm 1954</span></span
+                >
+              </div>
+              <a href="#" class="heritage-readmore"
+                ><span data-key="read_more">Tìm hiểu thêm</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Tràm Chim -->
+          <div class="heritage-card reveal">
+            <div
+              class="heritage-img"
+              style="background: linear-gradient(135deg, #c4dbb0, #a6c890)"
+            >
+              <img
+                src="../uploads/18.Vuonquocgiatramchim.png"
+                alt="Vườn Quốc gia Tràm Chim"
+              />
+              <span class="heritage-badge" style="background: var(--xanh-la)"
+                ><i class="fas fa-leaf"></i>
+                <span data-key="h_badge_natpark">Vườn quốc gia</span></span
+              >
+            </div>
+            <div class="heritage-body">
+              <h3 data-key="h3t">Vườn Quốc gia Tràm Chim</h3>
+              <p data-key="h3d">
+                Vườn Quốc gia Tràm Chim là một trong những vùng đất ngập nước
+                quan trọng nhất của Việt Nam và được UNESCO công nhận là Khu
+                Ramsar toàn cầu. Đây là ngôi nhà của loài sếu đầu đỏ quý hiếm
+                (Grus antigone) cùng hàng trăm loài chim, cá và thực vật đặc hữu
+                của Đồng Tháp Mười. Với diện tích 7.588 ha, hệ sinh thái Tràm
+                Chim không chỉ có ý nghĩa bảo tồn đa dạng sinh học mà còn là một
+                cảnh quan thiên nhiên kỳ thú, thu hút du khách bởi những cánh
+                đồng hoa nước mênh mông, những đàn cò trắng bay rợp trời, mang
+                lại trải nghiệm gần gũi và yên bình với thiên nhiên hoang dã.
+              </p>
+              <div class="heritage-meta">
+                <span
+                  ><i class="fas fa-location-dot"></i>
+                  <span data-key="h3_loc">Tam Nông, Đồng Tháp</span></span
+                >
+                <span
+                  ><i class="fas fa-ruler-combined"></i>
+                  <span data-key="h3_area">7.588 ha</span></span
+                >
+              </div>
+              <a href="#" class="heritage-readmore"
+                ><span data-key="read_more">Tìm hiểu thêm</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Làng chiếu Định Yên (đã sửa địa chỉ) -->
+          <div class="heritage-card reveal">
+            <div
+              class="heritage-img"
+              style="background: linear-gradient(135deg, #d8c8e8, #c4b0d8)"
+            >
+              <img
+                src="../uploads/19.Langchieu.png"
+                alt="Làng chiếu Định Yên"
+              />
+              <span class="heritage-badge"
+                ><i class="fas fa-star"></i>
+                <span data-key="h_badge_culture"
+                  >Di sản văn hóa phi vật thể</span
+                ></span
+              >
+            </div>
+            <div class="heritage-body">
+              <h3 data-key="h4t">Làng chiếu Định Yên</h3>
+              <p data-key="h4d">
+                Làng chiếu Định Yên, tọa lạc tại xã Định Yên, huyện Lấp Vò, tỉnh
+                Đồng Tháp, là một trong những làng nghề truyền thống nổi tiếng
+                của Đồng Tháp, chuyên sản xuất chiếu cói thủ công. Với lịch sử
+                hơn 200 năm, làng nghề đã phát triển thành một trung tâm sản
+                xuất chiếu chất lượng cao, nổi bật với các sản phẩm được dệt từ
+                sợi cói tự nhiên, bền đẹp và thân thiện với môi trường. Nghề dệt
+                chiếu không chỉ mang lại nguồn thu nhập ổn định cho người dân
+                địa phương mà còn góp phần bảo tồn giá trị văn hóa truyền thống,
+                tạo nên bản sắc riêng cho vùng đất Đồng Tháp.
+              </p>
+              <div class="heritage-meta">
+                <span
+                  ><i class="fas fa-location-dot"></i>
+                  <span data-key="h4_loc"
+                    >xã Định Yên, huyện Lấp Vò, Đồng Tháp</span
+                  ></span
+                >
+                <span
+                  ><i class="fas fa-calendar"></i>
+                  <span data-key="h4_era">Hơn 200 năm</span></span
+                >
+              </div>
+              <a href="#" class="heritage-readmore"
+                ><span data-key="read_more">Tìm hiểu thêm</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Làng hoa Sa Đéc -->
+          <div class="heritage-card reveal">
+            <div
+              class="heritage-img"
+              style="background: linear-gradient(135deg, #f0d0a0, #e0b878)"
+            >
+              <img src="../uploads/20. Langhoasadec" alt="Làng hoa Sa Đéc" />
+              <span class="heritage-badge" style="background: var(--xanh-la)"
+                ><i class="fas fa-leaf"></i>
+                <span data-key="h_badge_craft">Nghề truyền thống</span></span
+              >
+            </div>
+            <div class="heritage-body">
+              <h3 data-key="h5t">Làng hoa Sa Đéc</h3>
+              <p data-key="h5d">
+                Làng hoa Sa Đéc với bề dày hơn 100 năm lịch sử là một biểu tượng
+                văn hóa đặc trưng của vùng đất Đồng Tháp. Nằm bên bờ sông Tiền
+                thơ mộng, làng nghề nổi tiếng với hàng trăm chủng loại hoa kiểng
+                đủ màu sắc rực rỡ, từ hồng, cúc, mai, đào đến các giống hoa nhập
+                ngoại độc đáo. Mỗi năm, làng hoa cung cấp hàng triệu sản phẩm
+                cho cả nước và xuất khẩu, góp phần xây dựng thương hiệu du lịch
+                nổi bật. Nơi đây không chỉ là một làng nghề truyền thống mà còn
+                là một không gian nghệ thuật sống động, thu hút du khách bởi
+                cảnh quan thơ mộng và sự tận tụy của những người nông dân yêu
+                hoa.
+              </p>
+              <div class="heritage-meta">
+                <span
+                  ><i class="fas fa-location-dot"></i>
+                  <span data-key="h5_loc">TP. Sa Đéc, Đồng Tháp</span></span
+                >
+                <span
+                  ><i class="fas fa-calendar"></i>
+                  <span data-key="h5_era">Hơn 100 năm</span></span
+                >
+              </div>
+              <a href="#" class="heritage-readmore"
+                ><span data-key="read_more">Tìm hiểu thêm</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Đờn ca tài tử -->
+          <div class="heritage-card reveal">
+            <div
+              class="heritage-img"
+              style="background: linear-gradient(135deg, #b8d4d8, #90bcc4)"
+            >
+              <img
+                src="../uploads/21.Doncataitu.png"
+                alt="Đờn ca tài tử Nam Bộ"
+              />
+              <span class="heritage-badge" style="background: var(--hong-sen)"
+                ><i class="fas fa-heart"></i>
+                <span data-key="h_badge_intangible">Di sản văn hóa</span></span
+              >
+            </div>
+            <div class="heritage-body">
+              <h3 data-key="h6t">Đờn ca tài tử Nam Bộ</h3>
+              <p data-key="h6d">
+                Đờn ca tài tử Nam Bộ là một loại hình âm nhạc dân tộc độc đáo,
+                được UNESCO công nhận là Di sản văn hóa phi vật thể đại diện của
+                nhân loại vào năm 2013. Nghệ thuật này ra đời từ cuối thế kỷ
+                XIX, phát triển từ nhạc lễ Huế và dân ca miền Trung, mang đậm
+                hơi thở của cuộc sống lao động, tình yêu và tâm tư của người dân
+                Nam Bộ. Với những làn điệu sâu lắng, tài hoa và ngẫu hứng, đờn
+                ca tài tử đã trở thành linh hồn của các buổi họp mặt, lễ hội và
+                đời sống văn hóa cộng đồng ở Đồng Tháp nói riêng và toàn vùng
+                Đồng bằng sông Cửu Long nói chung.
+              </p>
+              <div class="heritage-meta">
+                <span
+                  ><i class="fas fa-location-dot"></i>
+                  <span data-key="h6_loc">Đồng bằng sông Cửu Long</span></span
+                >
+                <span
+                  ><i class="fas fa-award"></i>
+                  <span data-key="h6_rec">UNESCO 2013</span></span
+                >
+              </div>
+              <a href="#" class="heritage-readmore"
+                ><span data-key="read_more">Tìm hiểu thêm</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== NEWS & EVENTS ===== -->
+    <section class="news-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>
+            <i class="fas fa-newspaper"></i>
+            <span data-key="newssec_title">Tin tức & Sự kiện nổi bật</span>
+          </h2>
+          <p data-key="newssec_sub">
+            Cập nhật những hoạt động và sự kiện mới nhất của Bảo tàng Đồng Tháp
+          </p>
+        </div>
+        <div class="news-layout">
+          <!-- Featured News -->
+          <div class="news-featured reveal">
+            <div class="nf-img">
+              <img
+                src="../uploads/22.Phamhuulau.png"
+                alt="Đồng chí Phạm Hữu Lầu"
+              />
+              <span class="nf-tag"
+                ><i class="fas fa-fire"></i>
+                <span data-key="nf_hot">Nổi bật</span></span
+              >
+            </div>
+            <div class="nf-body">
+              <span class="nf-date"
+                ><i class="fas fa-calendar-days"></i>
+                <span data-key="nf1_date">23/09/2025</span></span
+              >
+              <h3 data-key="nf1t">
+                Đồng chí Phạm Hữu Lầu – Người đảng viên cộng sản đầu tiên của
+                tỉnh Đồng Tháp
+              </h3>
+              <p data-key="nf1d">
+                Bộ Chính trị công nhận đồng chí Phạm Hữu Lầu là lãnh đạo tiền
+                bối tiêu biểu của Đảng và cách mạng Việt Nam. Ông được kết nạp
+                vào An Nam Cộng sản Đảng tháng 10 năm 1929, là đảng viên cộng
+                sản đầu tiên của tỉnh Sa Đéc. Tháng 1 năm 1930, ông được bầu vào
+                Ban Chấp hành Trung ương lâm thời của Đảng cộng sản. Suốt cuộc
+                đời hoạt động cách mạng, ông hai lần bị đày ra Côn Đảo, từng phụ
+                trách báo "Dân chúng" và đảm nhiệm vai trò Bí thư Xứ ủy Nam Bộ.
+                Ngày 23 tháng 9 năm 2025, Đồng Tháp tổ chức lễ khánh thành Khu
+                lưu niệm Chi bộ An Nam Cộng sản Đảng với không gian tưởng niệm
+                dành riêng cho ông.
+              </p>
+              <a href="#" class="nf-link"
+                ><span data-key="read_more_detail">Đọc chi tiết</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- News List -->
+          <div class="news-list">
+            <div class="news-item reveal">
+              <div class="ni-thumb">
+                <img
+                  src="../uploads/23.Hoithaokhoahoc.png"
+                  alt="Hội thảo khoa học"
+                />
+              </div>
+              <div class="ni-body">
+                <span class="ni-date"
+                  ><i class="fas fa-calendar-days"></i>
+                  <span data-key="n2_date">08/06/2026</span></span
+                >
+                <h4 data-key="n2t">
+                  Hội thảo khoa học: Bảo tồn và phát huy giá trị di sản văn hóa
+                  Đồng Tháp
+                </h4>
+                <p data-key="n2d">
+                  Hội thảo quy tụ hơn 100 chuyên gia, nhà nghiên cứu trong và
+                  ngoài nước, tập trung thảo luận các giải pháp bảo tồn bền vững
+                  và phát huy giá trị các di sản văn hóa vật thể và phi vật thể
+                  của tỉnh Đồng Tháp trong bối cảnh hội nhập.
+                </p>
+                <a href="#" class="ni-link"
+                  >Xem thêm <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+
+            <div class="news-item reveal">
+              <div
+                class="ni-thumb"
+                style="background: linear-gradient(135deg, #e8d5b8, #d4c0a0)"
+              >
+                <img
+                  src="../uploads/24.Emyeulichsu.png"
+                  alt="Chương trình Em yêu lịch sử"
+                />
+              </div>
+              <div class="ni-body">
+                <span class="ni-date"
+                  ><i class="fas fa-calendar-days"></i>
+                  <span data-key="n3_date">01/06/2026</span></span
+                >
+                <h4 data-key="n3t">
+                  Chương trình "Em yêu lịch sử" – Ngày Quốc tế Thiếu nhi tại bảo
+                  tàng
+                </h4>
+                <p data-key="n3d">
+                  Hàng trăm em nhỏ đã tham gia chương trình đặc biệt với các
+                  hoạt động học mà chơi: tô tượng nhân vật lịch sử, vẽ tranh về
+                  vùng đất sen hồng, nghe kể chuyện cổ tích và tham gia trò chơi
+                  khám phá, khơi dậy tình yêu lịch sử từ những năm tháng ấu thơ.
+                </p>
+                <a href="#" class="ni-link"
+                  >Xem thêm <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+
+            <div class="news-item reveal">
+              <div
+                class="ni-thumb"
+                style="background: linear-gradient(135deg, #d8c8e8, #c4b0d8)"
+              >
+                <img
+                  src="../uploads/25.Soinoihoatdongchaomung.png"
+                  alt="Sôi nổi các hoạt động chào mừng Ngày Di sản Văn hóa Việt Nam"
+                />
+              </div>
+              <div class="ni-body">
+                <span class="ni-date"
+                  ><i class="fas fa-calendar-days"></i>
+                  <span data-key="n4_date">20/05/2026</span></span
+                >
+                <h4 data-key="n4t">
+                  Sôi nổi các hoạt động chào mừng Ngày Di sản Văn hóa Việt Nam
+                  (23/11) tại Bảo tàng Đồng Tháp
+                </h4>
+                <p data-key="n4d">
+                  Bảo tàng Đồng Tháp và Trường Đại học Cần Thơ chính thức ký kết
+                  biên bản ghi nhớ hợp tác trong nghiên cứu khảo cổ, đào tạo
+                  nguồn nhân lực và bảo tồn các di tích lịch sử - văn hóa trên
+                  địa bàn tỉnh, mở ra những hướng đi mới cho công tác bảo tồn.
+                </p>
+                <a href="#" class="ni-link"
+                  >Xem thêm <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+
+            <div class="news-item reveal">
+              <div
+                class="ni-thumb"
+                style="background: linear-gradient(135deg, #b8d4d8, #90bcc4)"
+              >
+                <img
+                  src="../uploads/26. Ngaytetcotruyen.png"
+                  alt="Tết cổ truyền"
+                />
+              </div>
+              <div class="ni-body">
+                <span class="ni-date"
+                  ><i class="fas fa-calendar-days"></i>
+                  <span data-key="n5_date">10/05/2026</span></span
+                >
+                <h4 data-key="n5t">
+                  Bảo tồn, phát huy giá trị di sản qua nét đẹp văn hóa truyền
+                  thống ngày Tết cổ truyền
+                </h4>
+                <p data-key="n5d">
+                  Bảo tàng Đồng Tháp tổ chức chuỗi hoạt động trải nghiệm văn hóa
+                  truyền thống trong dịp Tết cổ truyền, bao gồm trưng bày các
+                  hiện vật Tết xưa, hướng dẫn làm bánh chưng, gói bánh tét và
+                  các trò chơi dân gian, nhằm giáo dục thế hệ trẻ về giá trị văn
+                  hóa và tinh thần đoàn kết của cộng đồng.
+                </p>
+                <a href="#" class="ni-link"
+                  >Xem thêm <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+
+            <div class="news-item reveal">
+              <div
+                class="ni-thumb"
+                style="background: linear-gradient(135deg, #f0d0a0, #e0b878)"
+              >
+                <img
+                  src="../uploads/27.Sanphamocop.png"
+                  alt="Bảo tàng Đồng Tháp quan tâm và giới thiệu các sản phẩm OCOP và các đặc sản đặc sắc tỉnh Đồng Tháp"
+                />
+              </div>
+              <div class="ni-body">
+                <span class="ni-date"
+                  ><i class="fas fa-calendar-days"></i>
+                  <span data-key="n6_date">28/04/2026</span></span
+                >
+                <h4 data-key="n6t">
+                  Bảo tàng Đồng Tháp quan tâm và giới thiệu các sản phẩm OCOP và
+                  các đặc sản đặc sắc tỉnh Đồng Tháp
+                </h4>
+                <p data-key="n6d">
+                  Bảo tàng Đồng Tháp phối hợp với các cơ sở sản xuất và làng
+                  nghề địa phương tổ chức triển lãm và giới thiệu các sản phẩm
+                  OCOP (One Commune One Product) và đặc sản nổi tiếng của tỉnh,
+                  nhằm quảng bá văn hóa ẩm thực và thủ công mỹ nghệ, đồng thời
+                  hỗ trợ phát triển kinh tế địa phương và nâng cao nhận thức về
+                  giá trị văn hóa truyền thống.
+                </p>
+                <a href="#" class="ni-link"
+                  >Xem thêm <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="news-view-all">
+          <a href="#" data-key="view_all_news"
+            >Xem tất cả tin tức <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <h4>
+              <i class="fas fa-seedling"></i>
+              <span data-key="fa">Bảo tàng Đồng Tháp</span>
+            </h4>
+            <p data-key="fad">
+              Bảo tàng tỉnh Đồng Tháp là nơi lưu giữ và trưng bày những giá trị
+              văn hóa, lịch sử đặc sắc của vùng đất sen hồng.
+            </p>
+          </div>
+          <div>
+            <h4>
+              <i class="fas fa-address-book"></i>
+              <span data-key="fc">Thông tin liên hệ</span>
+            </h4>
+            <ul>
+              <li>
+                <i class="fas fa-location-dot"></i>
+                <span data-key="addr"
+                  >Số 02A, Trương Vĩnh Ký, phường Mỹ Tho</span
+                >
+              </li>
+              <li>
+                <i class="fas fa-phone"></i>
+                <span data-key="phone">0273 3872 235</span>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <span data-key="email">baotangdongthap@gmail.com</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4>
+              <i class="fas fa-clock"></i> <span data-key="fh">Giờ mở cửa</span>
+            </h4>
+            <ul>
+              <li>
+                <i class="fas fa-calendar-days"></i>
+                <span data-key="hw">Thứ 2 - Thứ 7: 8:00 - 17:00</span>
+              </li>
+              <li>
+                <i class="fas fa-sun"></i>
+                <span data-key="hs">Chủ nhật &amp; Lễ: 9:00 - 16:00</span>
+              </li>
+              <li>
+                <i class="fas fa-calendar-xmark"></i>
+                <span data-key="hh">Đóng cửa: Tết Nguyên Đán</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4>
+              <i class="fas fa-share-nodes"></i>
+              <span data-key="fk">Kết nối</span>
+            </h4>
+            <ul>
+              <li><i class="fab fa-facebook"></i> Facebook</li>
+              <li><i class="fab fa-youtube"></i> YouTube</li>
+              <li><i class="fab fa-instagram"></i> Instagram</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom" data-key="copy">
+          &copy; 2026 Bảo tàng Đồng Tháp. Mọi quyền được bảo lưu.
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===== MODALS ===== -->
+    <!-- Login Modal -->
+    <div class="modal-overlay auth-modal" id="loginModal">
+      <div class="modal-box">
+        <button class="close-modal" id="loginModalClose">&times;</button>
+        <div class="modal-header">
+          <i
+            class="fas fa-right-to-bracket modal-icon"
+            style="color: var(--xanh-la)"
+          ></i>
+          <h3 data-key="lg_title">Đăng nhập</h3>
+          <p class="modal-sub" data-key="lg_sub">Chào mừng bạn quay lại!</p>
+        </div>
+        <form id="loginForm" novalidate>
+          <div class="form-group" id="lgEmailG">
+            <label
+              ><span data-key="lg_email">Email</span>
+              <span class="required">*</span></label
+            ><input type="email" id="loginEmail" autocomplete="email" /><span
+              class="error-text"
+            ></span>
+          </div>
+          <div class="form-group" id="lgPwG">
+            <label
+              ><span data-key="lg_pw">Mật khẩu</span>
+              <span class="required">*</span></label
+            >
+            <div class="input-wrapper">
+              <input
+                type="password"
+                id="loginPassword"
+                autocomplete="current-password"
+              /><button
+                type="button"
+                class="toggle-pw"
+                onclick="togglePw('loginPassword', this)"
+              >
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <span class="error-text"></span>
+          </div>
+          <button type="submit" class="auth-btn-submit" data-key="lg_btn">
+            Đăng nhập
+          </button>
+        </form>
+        <div class="auth-footer">
+          <span data-key="lg_no_acc">Chưa có tài khoản?</span>
+          <a id="loginToRegister" data-key="lg_reg_link">Đăng ký ngay</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal-overlay auth-modal" id="signupModal">
+      <div class="modal-box">
+        <button class="close-modal" id="signupModalClose">&times;</button>
+        <div id="signupFormView">
+          <div class="modal-header">
+            <i
+              class="fas fa-user-plus modal-icon"
+              style="color: var(--vang-lua)"
+            ></i>
+            <h3 data-key="sg_title">Đăng ký tài khoản</h3>
+            <p class="modal-sub" data-key="sg_sub">
+              Tạo tài khoản để trải nghiệm đầy đủ
+            </p>
+          </div>
+          <form id="signupForm" novalidate>
+            <div class="form-group" id="sgEmailG">
+              <label
+                ><span data-key="sg_email">Email</span>
+                <span class="required">*</span></label
+              ><input type="email" id="signupEmail" autocomplete="email" /><span
+                class="error-text"
+              ></span>
+            </div>
+            <div class="form-group" id="sgPwG">
+              <label
+                ><span data-key="sg_pw">Mật khẩu</span>
+                <span class="required">*</span></label
+              >
+              <div class="input-wrapper">
+                <input
+                  type="password"
+                  id="signupPassword"
+                  autocomplete="new-password"
+                /><button
+                  type="button"
+                  class="toggle-pw"
+                  onclick="togglePw('signupPassword', this)"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+              <span class="error-text"></span>
+            </div>
+            <div class="form-group" id="sgConfG">
+              <label
+                ><span data-key="sg_confirm">Xác nhận mật khẩu</span>
+                <span class="required">*</span></label
+              >
+              <div class="input-wrapper">
+                <input
+                  type="password"
+                  id="signupConfirmPw"
+                  autocomplete="new-password"
+                /><button
+                  type="button"
+                  class="toggle-pw"
+                  onclick="togglePw('signupConfirmPw', this)"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+              <span class="error-text"></span>
+            </div>
+            <div class="form-group" id="sgCodeG">
+              <label
+                ><span data-key="sg_code">Mã xác nhận</span>
+                <span class="required">*</span></label
+              >
+              <div class="code-row">
+                <input
+                  type="text"
+                  id="signupCode"
+                  maxlength="6"
+                  placeholder="------"
+                  style="
+                    text-align: center;
+                    letter-spacing: 6px;
+                    font-weight: 700;
+                  "
+                /><button
+                  type="button"
+                  class="btn-send-code"
+                  id="sendCodeBtn"
+                  data-key="sg_send"
+                >
+                  Gửi mã
+                </button>
+              </div>
+              <div class="code-hint">
+                <i class="fas fa-info-circle"></i>
+                <span data-key="sg_hint"
+                  >Nhập mã 6 chữ số được gửi đến email của bạn</span
+                >
+              </div>
+              <span class="error-text"></span>
+            </div>
+            <button type="submit" class="auth-btn-submit" data-key="sg_submit">
+              Xác nhận đăng ký
+            </button>
+          </form>
+          <div class="auth-footer">
+            <span data-key="sg_has_acc">Đã có tài khoản?</span>
+            <a id="signupToLogin" data-key="sg_login_link">Đăng nhập</a>
+          </div>
+        </div>
+        <div class="auth-success-view" id="signupSuccessView">
+          <i class="fas fa-circle-check success-icon"></i>
+          <h3 data-key="sg_ok_title">Đăng ký thành công!</h3>
+          <p data-key="sg_ok_msg">
+            Tài khoản đã được tạo. Bạn có thể đăng nhập ngay.
+          </p>
+          <button
+            class="auth-btn-submit"
+            id="signupSuccessLoginBtn"
+            data-key="sg_ok_login"
+          >
+            Đăng nhập ngay
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="modal-overlay auth-modal" id="profileModal">
+      <div class="modal-box">
+        <button class="close-modal" id="profileModalClose">&times;</button>
+        <div class="modal-header">
+          <i
+            class="fas fa-user-pen modal-icon"
+            style="color: var(--xanh-la)"
+          ></i>
+          <h3 data-key="pf_title">Thông tin cá nhân</h3>
+        </div>
+        <form id="profileForm" novalidate>
+          <div class="form-group">
+            <label><span data-key="pf_acc">Tài khoản (Email)</span></label
+            ><input type="email" id="profEmail" readonly />
+          </div>
+          <div class="form-group" id="pfNameG">
+            <label
+              ><span data-key="pf_name">Họ &amp; tên</span>
+              <span class="required">*</span></label
+            ><input type="text" id="profFullname" /><span
+              class="error-text"
+            ></span>
+          </div>
+          <div class="form-group">
+            <label><span data-key="pf_phone">Số điện thoại</span></label
+            ><input type="tel" id="profPhone" />
+          </div>
+          <div class="form-group">
+            <label><span data-key="pf_addr">Địa chỉ</span></label
+            ><input type="text" id="profAddress" />
+          </div>
+          <div class="form-group">
+            <label><span data-key="pf_nat">Quốc tịch</span></label
+            ><select id="profNationality"></select>
+          </div>
+          <button type="submit" class="auth-btn-submit">
+            <i class="fas fa-floppy-disk"></i>
+            <span data-key="pf_save">Lưu thay đổi</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div class="modal-overlay auth-modal" id="changePwModal">
+      <div class="modal-box">
+        <button class="close-modal" id="changePwModalClose">&times;</button>
+        <div class="modal-header">
+          <i class="fas fa-lock modal-icon" style="color: var(--hong-sen)"></i>
+          <h3 data-key="cp_title">Đổi mật khẩu</h3>
+        </div>
+        <form id="changePwForm" novalidate>
+          <div class="form-group" id="cpCurG">
+            <label
+              ><span data-key="cp_cur">Mật khẩu hiện tại</span>
+              <span class="required">*</span></label
+            >
+            <div class="input-wrapper">
+              <input type="password" id="cpCurrentPw" /><button
+                type="button"
+                class="toggle-pw"
+                onclick="togglePw('cpCurrentPw', this)"
+              >
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <span class="error-text"></span>
+          </div>
+          <div class="form-group" id="cpNewG">
+            <label
+              ><span data-key="cp_new">Mật khẩu mới</span>
+              <span class="required">*</span></label
+            >
+            <div class="input-wrapper">
+              <input type="password" id="cpNewPw" /><button
+                type="button"
+                class="toggle-pw"
+                onclick="togglePw('cpNewPw', this)"
+              >
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <span class="error-text"></span>
+          </div>
+          <div class="form-group" id="cpConfG">
+            <label
+              ><span data-key="cp_conf">Xác nhận mật khẩu mới</span>
+              <span class="required">*</span></label
+            >
+            <div class="input-wrapper">
+              <input type="password" id="cpConfirmPw" /><button
+                type="button"
+                class="toggle-pw"
+                onclick="togglePw('cpConfirmPw', this)"
+              >
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <span class="error-text"></span>
+          </div>
+          <button type="submit" class="auth-btn-submit">
+            <i class="fas fa-key"></i>
+            <span data-key="cp_btn">Đổi mật khẩu</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Visit Modal -->
+    <div class="modal-overlay visit-modal" id="visitModal">
+      <div class="modal-box">
+        <button class="close-modal" id="visitModalClose">&times;</button>
+        <div class="form-content" id="visitFormContent">
+          <h3>
+            <i class="fas fa-ticket" style="color: var(--hong-sen)"></i>
+            <span data-key="vs_title">Đăng ký tham quan</span>
+          </h3>
+          <p class="sub-title" data-key="vs_sub">
+            Vui lòng điền thông tin bên dưới để đăng ký chuyến tham quan Bảo
+            tàng Đồng Tháp.
+          </p>
+          <form id="visitForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label
+                  ><span data-key="vs_name">Họ và tên</span>
+                  <span class="required">*</span></label
+                ><input type="text" id="visitFullname" />
+              </div>
+              <div class="form-group">
+                <label
+                  ><span data-key="vs_phone">Số điện thoại</span>
+                  <span class="required">*</span></label
+                ><input type="tel" id="visitPhone" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label
+                ><span data-key="vs_email">Email</span>
+                <span class="required">*</span></label
+              ><input type="email" id="visitEmail" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label
+                  ><span data-key="vs_date">Ngày tham quan</span>
+                  <span class="required">*</span></label
+                ><input type="date" id="visitDate" />
+              </div>
+              <div class="form-group">
+                <label
+                  ><span data-key="vs_guests">Số lượng khách</span>
+                  <span class="required">*</span></label
+                ><input type="number" id="visitGuests" min="1" max="50" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label data-key="vs_notes">Ghi chú</label
+              ><textarea id="visitNotes" rows="3"></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn-primary">
+                <i class="fas fa-paper-plane"></i>
+                <span data-key="vs_btn">Gửi đăng ký</span>
+              </button>
+              <button type="button" class="btn-secondary" id="visitCancelBtn">
+                <span data-key="vs_cancel">Hủy</span>
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="success-msg" id="visitSuccessMsg">
+          <i class="fas fa-circle-check big-icon"></i>
+          <h3 data-key="vs_ok_title">Đăng ký thành công!</h3>
+          <p data-key="vs_ok_msg">
+            Cảm ơn bạn đã đăng ký tham quan. Chúng tôi sẽ liên hệ xác nhận trong
+            thời gian sớm nhất.
+          </p>
+          <button
+            class="btn-primary"
+            id="visitSuccessClose"
+            style="margin-top: 16px"
+          >
+            <span data-key="close">Đóng</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification Modal -->
+    <div class="modal-overlay" id="notifModal">
+      <div class="modal-box">
+        <button class="close-modal" id="notifClose">&times;</button>
+        <h3 id="notifTitle"></h3>
+        <p id="notifMessage"></p>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px">
+          <button class="btn-primary" id="notifConfirm"></button>
+          <button class="btn-secondary" id="notifCancel"></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // ---------- DICTIONARY ----------
+        var T = {
+          vi: {
+            site_name: "Bảo Tàng Đồng Tháp",
+            site_sub: "Dong Thap Museum",
+            home: "Trang chủ",
+            intro_menu: "Giới thiệu",
+            intro_greeting: "Lời giới thiệu",
+            intro_history: "Lịch sử hình thành & phát triển",
+            intro_leadership: "Ban lãnh đạo bảo tàng",
+            exhibit: "Trưng bày",
+            exhibit_arch: "Kiến trúc lịch sử và văn hóa",
+            exhibit_history: "Theo dòng lịch sử",
+            exhibit_items: "Danh sách hiện vật",
+            exhibit_exhibitions: "Danh sách triển lãm",
+            exhibit_sites: "Khu di tích",
+            news: "Tin tức",
+            news_preserve: "Hoạt động bảo vệ tàn tích",
+            news_domestic: "Tin tức trong nước",
+            news_international: "Tin tức ngoài nước",
+            visit_menu: "Tham quan",
+            visit_rules: "Nội quy tham quan",
+            visit_register: "Đăng ký tham quan",
+            register: "Đăng ký",
+            login: "Đăng nhập",
+            profile: "Hồ sơ cá nhân",
+            profile_info: "Thông tin cá nhân",
+            profile_booking: "Đăng ký tham quan",
+            profile_password: "Đổi mật khẩu",
+            logout: "Đăng xuất",
+            b0t: "Bảo tàng Đồng Tháp",
+            b0d: "Khám phá kho tàng văn hóa - lịch sử vùng đất sen hồng",
+            b1t: "Sen hồng Đồng Tháp",
+            b1d: "Biểu tượng của vùng đất giàu truyền thống và nghĩa tình",
+            b2t: "Khu di tích Gò Tháp",
+            b2d: "Dấu ấn lịch sử hào hùng của dân tộc",
+            b3t: "Vườn Quốc gia Tràm Chim",
+            b3d: "Hệ sinh thái đa dạng và sếu đầu đỏ quý hiếm",
+            b4t: "Làng hoa Sa Đéc",
+            b4d: "Bốn mùa rực rỡ sắc hương hoa",
+            b5t: "Văn hóa Óc Eo",
+            b5d: "Những cổ vật quý giá ngàn năm tuổi",
+            b6t: "Cánh đồng lúa Đồng Tháp",
+            b6d: "Hương lúa nội đồng, tình đất phương Nam",
+            intro_title:
+              "Chào mừng đến với<br /><span>Bảo tàng Đồng Tháp</span>",
+            intro_desc:
+              "Khám phá lịch sử, văn hóa và con người vùng đất sen hồng qua những hiện vật và câu chuyện đầy cảm hứng.",
+            search_ph: "Nhập tên hiện vật, cổ vật, di tích cần tìm...",
+            search_btn: "Tìm kiếm",
+            ss1: "Tượng Vishnu",
+            ss2: "Gốm Óc Eo",
+            ss3: "Tiền cổ Nguyễn",
+            ss4: "Kiếm Đông Sơn",
+            ss5: "Nhẫn Phù Nam",
+            stat1: "Hiện vật",
+            stat2: "Năm lịch sử",
+            stat3: "Triển lãm",
+            stat4: "Lượt tham quan",
+            features_title: "Khám phá Bảo tàng",
+            features_sub: "Những trải nghiệm đặc sắc dành cho bạn",
+            f1t: "Trưng bày đa dạng",
+            f1d: "Hàng nghìn hiện vật quý giá qua các thời kỳ lịch sử, văn hóa và kiến trúc.",
+            f2t: "Tin tức cập nhật",
+            f2d: "Thông tin mới nhất về các hoạt động bảo tồn và sự kiện văn hóa trong và ngoài nước.",
+            f3t: "Tham quan dễ dàng",
+            f3d: "Hướng dẫn chi tiết, nội quy và giờ mở cửa để bạn có chuyến thăm trọn vẹn.",
+            f4t: "Đăng ký tham quan",
+            f4d: "Đăng ký tham quan nhanh chóng, tiện lợi ngay trên website.",
+            artifacts_title: "Hiện vật tiêu biểu",
+            artifacts_sub: "Những cổ vật quý giá đang được trưng bày",
+            a1t: "Đĩa gốm Óc Eo thế kỷ VII",
+            a1d: "Đĩa gốm được khai quật tại di tích Óc Eo, An Giang, mang họa tiết hoa sen tinh xảo, thể hiện sự giao thoa văn hóa giữa Ấn Độ giáo và nghệ thuật Champa cổ đại. Đây là một trong những hiện vật tiêu biểu cho trình độ kỹ thuật gốm sứ và tín ngưỡng tôn giáo của cư dân Phù Nam vào thế kỷ VII, minh chứng cho một nền văn minh sông nước rực rỡ từng tỏa sáng ở vùng Đồng bằng sông Cửu Long.",
+            a2t: "Tượng thần Vishnu bằng đá",
+            a2d: "Tượng đá sa thạch cao 1,2m, có niên đại khoảng thế kỷ VIII, miêu tả thần Vishnu trong tư thế uy nghi với bốn cánh tay cầm các pháp khí biểu trưng cho quyền năng tối thượng: đĩa Sudarshana, dùi cui Kaumodaki, tù và Panchajanya và hoa sen. Phát hiện tại khuôn viên tháp Gò Tháp, bức tượng là một kiệt tác điêu khắc, phản ánh ảnh hưởng sâu sắc của văn hóa Ấn Độ đối với tín ngưỡng và nghệ thuật thời kỳ Phù Nam – Óc Eo.",
+            a3t: "Bộ sưu tập tiền cổ thời Nguyễn",
+            a3d: "Bộ sưu tập gồm hơn 500 đồng tiền xu bằng đồng và vàng, trải dài từ triều Gia Long (1802) đến Bảo Đại (1945), là bằng chứng sống động về nền kinh tế thương mại sầm uất tại vùng Đồng Tháp Mười trong suốt thế kỷ XIX – XX. Mỗi đồng tiền không chỉ là phương tiện giao dịch mà còn mang giá trị nghệ thuật khắc họa hình ảnh rồng, phượng và các biểu trưng hoàng gia, phản ánh sự thịnh vượng và giao lưu văn hóa thời kỳ nhà Nguyễn.",
+            a4t: "Nhẫn vàng thời Phù Nam",
+            a4d: "Chiếc nhẫn vàng 18K nguyên khối, được chạm khắc hình rắn Naga cuộn tròn uyển chuyển – biểu tượng thiêng liêng của quyền lực vương giả trong văn hóa Phù Nam. Niên đại khoảng thế kỷ III – VI sau Công nguyên, chiếc nhẫn được tìm thấy trong một ngôi mộ cổ tại khu vực Óc Eo, cho thấy trình độ luyện kim và tinh thần thẩm mỹ tinh tế của cư dân bản địa, đồng thời là minh chứng cho sự giàu có và uy quyền của tầng lớp quý tộc thời bấy giờ.",
+            a5t: "Bia ký chùa Kiến An",
+            a5d: "Tấm bia đá cổ được dựng vào năm 1845, ghi chép chi tiết quá trình xây dựng và trùng tu chùa Kiến An dưới triều vua Thiệu Trị. Văn bia khắc chữ Hán với nét chữ mạch lạc, cung cấp những tư liệu vô giá về công cuộc khai hoang, lập ấp cũng như đời sống tín ngưỡng của cư dân người Việt tại vùng đất Đồng Tháp vào giữa thế kỷ XIX, góp phần dựng lại bức tranh lịch sử xã hội thời kỳ Nam Bộ thuộc địa.",
+            a6t: "Kiếm đồng thời Đông Sơn",
+            a6d: "Thanh kiếm đồng ngắn với cán được khắc hình thuyền chiến và hoa văn hình học đặc trưng, có niên đại khoảng thế kỷ III – II trước Công nguyên. Đây là một phát hiện quan trọng, chứng minh sự giao thương và giao lưu văn hóa mạnh mẽ giữa cư dân Bắc Bộ và các cộng đồng cư dân ở Nam Bộ từ rất sớm. Thanh kiếm không chỉ là vũ khí mà còn là biểu tượng cho sức mạnh và uy tín của các thủ lĩnh thời kỳ tiền sử.",
+            heritage_title: "Di sản văn hóa",
+            heritage_sub:
+              "Những di tích, làng nghề và giá trị văn hóa đặc sắc của vùng đất sen hồng",
+            h_badge_nat: "Di tích quốc gia",
+            h_badge_hist: "Di tích lịch sử",
+            h_badge_natpark: "Vườn quốc gia",
+            h_badge_culture: "Di sản văn hóa phi vật thể",
+            h_badge_craft: "Nghề truyền thống",
+            h_badge_intangible: "Di sản văn hóa",
+            h1t: "Khu di tích Gò Tháp",
+            h1d: "Khu di tích quốc gia đặc biệt Gò Tháp là một quần thể khảo cổ học quan trọng bậc nhất tại Đồng bằng sông Cửu Long, lưu giữ dấu ấn rực rỡ của nền văn hóa Óc Eo từ thế kỷ I đến thế kỷ VII. Tại đây, du khách có thể chiêm ngưỡng những ngôi tháp cổ uy nghi, các khu mộ táng và hệ thống kênh đào cổ đại được xây dựng với kỹ thuật tiên tiến, phản ánh một nền văn minh tiên tiến từng phát triển hưng thịnh. Mỗi hiện vật, mỗi dấu tích đều kể những câu chuyện về tín ngưỡng, thương mại và đời sống tinh thần của người xưa, góp phần tạo dựng nên bản sắc văn hóa đặc thù cho vùng đất Sen Hồng.",
+            h1_loc: "Tháp Mười, Đồng Tháp",
+            h1_era: "Thế kỷ I - VII",
+            h2t: "Tượng đài sự kiện Tập kết năm 1954",
+            h2d: "Tượng đài sự kiện Tập kết năm 1954 là một công trình tưởng niệm quan trọng, được xây dựng để ghi nhớ sự kiện lịch sử khi hàng nghìn người dân miền Bắc di cư vào Nam sau Hiệp định Genève. Tượng đài được thiết kế với hình ảnh những con thuyền chở đầy người và hàng hóa, biểu tượng cho tinh thần kiên cường, hy sinh và khát vọng tự do của nhân dân Việt Nam. Đây không chỉ là một địa điểm lịch sử mà còn là nơi giáo dục truyền thống yêu nước, nhắc nhở thế hệ trẻ về những giá trị lịch sử và tinh thần đoàn kết dân tộc.",
+            h2_loc: "Cao Lãnh, Đồng Tháp",
+            h2_era: "Năm 1954",
+            h3t: "Vườn Quốc gia Tràm Chim",
+            h3d: "Vườn Quốc gia Tràm Chim là một trong những vùng đất ngập nước quan trọng nhất của Việt Nam và được UNESCO công nhận là Khu Ramsar toàn cầu. Đây là ngôi nhà của loài sếu đầu đỏ quý hiếm (Grus antigone) cùng hàng trăm loài chim, cá và thực vật đặc hữu của Đồng Tháp Mười. Với diện tích 7.588 ha, hệ sinh thái Tràm Chim không chỉ có ý nghĩa bảo tồn đa dạng sinh học mà còn là một cảnh quan thiên nhiên kỳ thú, thu hút du khách bởi những cánh đồng hoa nước mênh mông, những đàn cò trắng bay rợp trời, mang lại trải nghiệm gần gũi và yên bình với thiên nhiên hoang dã.",
+            h3_loc: "Tam Nông, Đồng Tháp",
+            h3_area: "7.588 ha",
+            h4t: "Làng chiếu Định Yên",
+            h4d: "Làng chiếu Định Yên, tọa lạc tại xã Định Yên, huyện Lấp Vò, tỉnh Đồng Tháp, là một trong những làng nghề truyền thống nổi tiếng của Đồng Tháp, chuyên sản xuất chiếu cói thủ công. Với lịch sử hơn 200 năm, làng nghề đã phát triển thành một trung tâm sản xuất chiếu chất lượng cao, nổi bật với các sản phẩm được dệt từ sợi cói tự nhiên, bền đẹp và thân thiện với môi trường. Nghề dệt chiếu không chỉ mang lại nguồn thu nhập ổn định cho người dân địa phương mà còn góp phần bảo tồn giá trị văn hóa truyền thống, tạo nên bản sắc riêng cho vùng đất Đồng Tháp.",
+            h4_loc: "xã Định Yên, huyện Lấp Vò, Đồng Tháp",
+            h4_era: "Hơn 200 năm",
+            h5t: "Làng hoa Sa Đéc",
+            h5d: "Làng hoa Sa Đéc với bề dày hơn 100 năm lịch sử là một biểu tượng văn hóa đặc trưng của vùng đất Đồng Tháp. Nằm bên bờ sông Tiền thơ mộng, làng nghề nổi tiếng với hàng trăm chủng loại hoa kiểng đủ màu sắc rực rỡ, từ hồng, cúc, mai, đào đến các giống hoa nhập ngoại độc đáo. Mỗi năm, làng hoa cung cấp hàng triệu sản phẩm cho cả nước và xuất khẩu, góp phần xây dựng thương hiệu du lịch nổi bật. Nơi đây không chỉ là một làng nghề truyền thống mà còn là một không gian nghệ thuật sống động, thu hút du khách bởi cảnh quan thơ mộng và sự tận tụy của những người nông dân yêu hoa.",
+            h5_loc: "TP. Sa Đéc, Đồng Tháp",
+            h5_era: "Hơn 100 năm",
+            h6t: "Đờn ca tài tử Nam Bộ",
+            h6d: "Đờn ca tài tử Nam Bộ là một loại hình âm nhạc dân tộc độc đáo, được UNESCO công nhận là Di sản văn hóa phi vật thể đại diện của nhân loại vào năm 2013. Nghệ thuật này ra đời từ cuối thế kỷ XIX, phát triển từ nhạc lễ Huế và dân ca miền Trung, mang đậm hơi thở của cuộc sống lao động, tình yêu và tâm tư của người dân Nam Bộ. Với những làn điệu sâu lắng, tài hoa và ngẫu hứng, đờn ca tài tử đã trở thành linh hồn của các buổi họp mặt, lễ hội và đời sống văn hóa cộng đồng ở Đồng Tháp nói riêng và toàn vùng Đồng bằng sông Cửu Long nói chung.",
+            h6_loc: "Đồng bằng sông Cửu Long",
+            h6_rec: "UNESCO 2013",
+            read_more: "Tìm hiểu thêm",
+            newssec_title: "Tin tức & Sự kiện nổi bật",
+            newssec_sub:
+              "Cập nhật những hoạt động và sự kiện mới nhất của Bảo tàng Đồng Tháp",
+            nf_hot: "Nổi bật",
+            nf1_date: "23/09/2025",
+            nf1t: "Đồng chí Phạm Hữu Lầu – Người đảng viên cộng sản đầu tiên của tỉnh Đồng Tháp",
+            nf1d: 'Bộ Chính trị công nhận đồng chí Phạm Hữu Lầu là lãnh đạo tiền bối tiêu biểu của Đảng và cách mạng Việt Nam. Ông được kết nạp vào An Nam Cộng sản Đảng tháng 10 năm 1929, là đảng viên cộng sản đầu tiên của tỉnh Sa Đéc. Tháng 1 năm 1930, ông được bầu vào Ban Chấp hành Trung ương lâm thời của Đảng cộng sản. Suốt cuộc đời hoạt động cách mạng, ông hai lần bị đày ra Côn Đảo, từng phụ trách báo "Dân chúng" và đảm nhiệm vai trò Bí thư Xứ ủy Nam Bộ. Ngày 23 tháng 9 năm 2025, Đồng Tháp tổ chức lễ khánh thành Khu lưu niệm Chi bộ An Nam Cộng sản Đảng với không gian tưởng niệm dành riêng cho ông.',
+            read_more_detail: "Đọc chi tiết",
+            n2_date: "08/06/2026",
+            n2t: "Hội thảo khoa học: Bảo tồn và phát huy giá trị di sản văn hóa Đồng Tháp",
+            n2d: "Hội thảo quy tụ hơn 100 chuyên gia, nhà nghiên cứu trong và ngoài nước, tập trung thảo luận các giải pháp bảo tồn bền vững và phát huy giá trị các di sản văn hóa vật thể và phi vật thể của tỉnh Đồng Tháp trong bối cảnh hội nhập.",
+            n3_date: "01/06/2026",
+            n3t: 'Chương trình "Em yêu lịch sử" – Ngày Quốc tế Thiếu nhi tại bảo tàng',
+            n3d: "Hàng trăm em nhỏ đã tham gia chương trình đặc biệt với các hoạt động học mà chơi: tô tượng nhân vật lịch sử, vẽ tranh về vùng đất sen hồng, nghe kể chuyện cổ tích và tham gia trò chơi khám phá, khơi dậy tình yêu lịch sử từ những năm tháng ấu thơ.",
+            n4_date: "20/05/2026",
+            n4t: "Sôi nổi các hoạt động chào mừng Ngày Di sản Văn hóa Việt Nam tại Bảo tàng Đồng Tháp",
+            n4d: "Các hoạt động bao gồm triển lãm chuyên đề về văn hóa Óc Eo, trình diễn nghệ thuật dân gian, tọa đàm về bảo tồn di sản và các trò chơi dân gian truyền thống, thu hút đông đảo người dân và du khách tham gia, góp phần nâng cao nhận thức về giá trị di sản văn hóa.",
+            n5_date: "10/05/2026",
+            n5t: "Bảo tồn, phát huy giá trị di sản qua nét đẹp văn hóa truyền thống ngày Tết cổ truyền",
+            n5d: "Bảo tàng Đồng Tháp tổ chức chuỗi hoạt động trải nghiệm văn hóa truyền thống trong dịp Tết cổ truyền, bao gồm trưng bày các hiện vật Tết xưa, hướng dẫn làm bánh chưng, gói bánh tét và các trò chơi dân gian, nhằm giáo dục thế hệ trẻ về giá trị văn hóa và tinh thần đoàn kết của cộng đồng.",
+            n6_date: "28/04/2026",
+            n6t: "Bảo tàng Đồng Tháp quan tâm và giới thiệu các sản phẩm OCOP và các đặc sản đặc sắc tỉnh Đồng Tháp",
+            n6d: "Bảo tàng Đồng Tháp phối hợp với các cơ sở sản xuất và làng nghề địa phương tổ chức triển lãm và giới thiệu các sản phẩm OCOP (One Commune One Product) và đặc sản nổi tiếng của tỉnh, nhằm quảng bá văn hóa ẩm thực và thủ công mỹ nghệ, đồng thời hỗ trợ phát triển kinh tế địa phương và nâng cao nhận thức về giá trị văn hóa truyền thống.",
+            view_all_news: "Xem tất cả tin tức",
+            fa: "Bảo tàng Đồng Tháp",
+            fad: "Bảo tàng tỉnh Đồng Tháp là nơi lưu giữ và trưng bày những giá trị văn hóa, lịch sử đặc sắc của vùng đất sen hồng.",
+            fc: "Thông tin liên hệ",
+            addr: "Số 02A, Trương Vĩnh Ký, phường Mỹ Tho",
+            phone: "0273 3872 235",
+            email: "baotangdongthap@gmail.com",
+            fh: "Giờ mở cửa",
+            hw: "Thứ 2 - Thứ 7: 8:00 - 17:00",
+            hs: "Chủ nhật & Lễ: 9:00 - 16:00",
+            hh: "Đóng cửa: Tết Nguyên Đán",
+            fk: "Kết nối",
+            copy: "© 2026 Bảo tàng Đồng Tháp. Mọi quyền được bảo lưu.",
+            lg_title: "Đăng nhập",
+            lg_sub: "Chào mừng bạn quay lại!",
+            lg_email: "Email",
+            lg_pw: "Mật khẩu",
+            lg_btn: "Đăng nhập",
+            lg_no_acc: "Chưa có tài khoản?",
+            lg_reg_link: "Đăng ký ngay",
+            lg_err_email: "Vui lòng nhập email hợp lệ",
+            lg_err_pw: "Vui lòng nhập mật khẩu",
+            lg_err_inv: "Email hoặc mật khẩu không đúng",
+            sg_title: "Đăng ký tài khoản",
+            sg_sub: "Tạo tài khoản để trải nghiệm đầy đủ",
+            sg_email: "Email",
+            sg_pw: "Mật khẩu",
+            sg_confirm: "Xác nhận mật khẩu",
+            sg_code: "Mã xác nhận",
+            sg_send: "Gửi mã",
+            sg_resend: "Gửi lại mã",
+            sg_timer: "Gửi lại sau",
+            sg_hint: "Nhập mã 6 chữ số được gửi đến email của bạn",
+            sg_submit: "Xác nhận đăng ký",
+            sg_has_acc: "Đã có tài khoản?",
+            sg_login_link: "Đăng nhập",
+            sg_ok_title: "Đăng ký thành công!",
+            sg_ok_msg: "Tài khoản đã được tạo. Bạn có thể đăng nhập ngay.",
+            sg_ok_login: "Đăng nhập ngay",
+            sg_err_email: "Vui lòng nhập email hợp lệ",
+            sg_err_dup: "Email này đã được đăng ký",
+            sg_err_pw: "Mật khẩu phải có ít nhất 6 ký tự",
+            sg_err_confirm: "Mật khẩu xác nhận không khớp",
+            sg_err_code: "Vui lòng nhập mã xác nhận 6 chữ số",
+            sg_code_sent: "Mã xác nhận đã được gửi đến email!",
+            pf_title: "Thông tin cá nhân",
+            pf_acc: "Tài khoản (Email)",
+            pf_name: "Họ & tên",
+            pf_phone: "Số điện thoại",
+            pf_addr: "Địa chỉ",
+            pf_nat: "Quốc tịch",
+            pf_save: "Lưu thay đổi",
+            pf_err_name: "Vui lòng nhập họ tên",
+            pf_ok: "Cập nhật thành công!",
+            cp_title: "Đổi mật khẩu",
+            cp_cur: "Mật khẩu hiện tại",
+            cp_new: "Mật khẩu mới",
+            cp_conf: "Xác nhận mật khẩu mới",
+            cp_btn: "Đổi mật khẩu",
+            cp_err_cur: "Vui lòng nhập mật khẩu hiện tại",
+            cp_err_new: "Mật khẩu mới phải có ít nhất 6 ký tự",
+            cp_err_conf: "Mật khẩu xác nhận không khớp",
+            cp_err_wrong: "Mật khẩu hiện tại không đúng",
+            cp_ok: "Đổi mật khẩu thành công!",
+            vs_title: "Đăng ký tham quan",
+            vs_sub:
+              "Vui lòng điền thông tin bên dưới để đăng ký chuyến tham quan Bảo tàng Đồng Tháp.",
+            vs_name: "Họ và tên",
+            vs_phone: "Số điện thoại",
+            vs_email: "Email",
+            vs_date: "Ngày tham quan",
+            vs_guests: "Số lượng khách",
+            vs_notes: "Ghi chú",
+            vs_btn: "Gửi đăng ký",
+            vs_cancel: "Hủy",
+            vs_ok_title: "Đăng ký thành công!",
+            vs_ok_msg:
+              "Cảm ơn bạn đã đăng ký tham quan. Chúng tôi sẽ liên hệ xác nhận trong thời gian sớm nhất.",
+            close: "Đóng",
+            login_required: "Yêu cầu đăng nhập",
+            login_required_msg: "Vui lòng đăng nhập để truy cập chức năng này.",
+            you_selected: "Bạn đã chọn: ",
+            login_ok: "Đăng nhập thành công!",
+            logout_ok: "Bạn đã đăng xuất thành công.",
+            err_name: "Vui lòng nhập họ và tên",
+            err_phone: "Số điện thoại không hợp lệ",
+            err_email: "Email không hợp lệ",
+            err_date: "Vui lòng chọn ngày tham quan",
+            err_guests: "Số lượng khách không hợp lệ",
+          },
+          en: {
+            site_name: "Dong Thap Museum",
+            site_sub: "Bảo Tàng Đồng Tháp",
+            home: "Home",
+            intro_menu: "About",
+            intro_greeting: "Welcome Message",
+            intro_history: "History & Development",
+            intro_leadership: "Board of Directors",
+            exhibit: "Exhibitions",
+            exhibit_arch: "Historical & Cultural Architecture",
+            exhibit_history: "Through History",
+            exhibit_items: "Artifacts List",
+            exhibit_exhibitions: "Exhibition List",
+            exhibit_sites: "Historic Sites",
+            news: "News",
+            news_preserve: "Preservation Activities",
+            news_domestic: "Domestic News",
+            news_international: "International News",
+            visit_menu: "Visit",
+            visit_rules: "Visiting Rules",
+            visit_register: "Visit Registration",
+            register: "Register",
+            login: "Login",
+            profile: "My Profile",
+            profile_info: "Personal Info",
+            profile_booking: "Book Ticket",
+            profile_password: "Change Password",
+            logout: "Logout",
+            b0t: "Dong Thap Museum",
+            b0d: "Explore the cultural and historical treasure of the lotus land",
+            b1t: "Pink Lotus of Dong Thap",
+            b1d: "Symbol of a land rich in tradition and deep sentiment",
+            b2t: "Go Thap Historic Site",
+            b2d: "Marks of the nation's heroic history",
+            b3t: "Tram Chim National Park",
+            b3d: "Diverse ecosystem and rare red-crowned cranes",
+            b4t: "Sa Dec Flower Village",
+            b4d: "Vibrant colors and fragrances all year round",
+            b5t: "Oc Eo Culture",
+            b5d: "Precious antiques from a thousand years ago",
+            b6t: "Dong Thap Rice Fields",
+            b6d: "Fragrant rice paddies, warmth of the Southern land",
+            intro_title: "Welcome to<br /><span>Dong Thap Museum</span>",
+            intro_desc:
+              "Explore the history, culture, and people of the lotus land through artifacts and inspiring stories.",
+            search_ph: "Search for artifacts, antiques, historic sites...",
+            search_btn: "Search",
+            ss1: "Vishnu Statue",
+            ss2: "Oc Eo Pottery",
+            ss3: "Nguyen Coins",
+            ss4: "Dong Son Sword",
+            ss5: "Phu Nam Ring",
+            stat1: "Artifacts",
+            stat2: "Years of History",
+            stat3: "Exhibitions",
+            stat4: "Visitors",
+            features_title: "Explore the Museum",
+            features_sub: "Unique experiences for you",
+            f1t: "Diverse Exhibitions",
+            f1d: "Thousands of precious artifacts across historical, cultural, and architectural periods.",
+            f2t: "Updated News",
+            f2d: "Latest information on conservation activities and cultural events domestically and internationally.",
+            f3t: "Easy Visit",
+            f3d: "Detailed guides, rules, and opening hours for a complete visit.",
+            f4t: "Online Registration",
+            f4d: "Register for your visit quickly and conveniently right on the website.",
+            artifacts_title: "Featured Artifacts",
+            artifacts_sub: "Precious antiques currently on display",
+            a1t: "Oc Eo Pottery Plate - 7th Century",
+            a1d: "Pottery plate excavated at Oc Eo site, An Giang, featuring exquisite lotus motifs, reflecting a fusion between Hindu culture and ancient Champa art. It is one of the most outstanding artifacts demonstrating the high skill of ceramic making and the religious beliefs of Phu Nam people in the 7th century, providing powerful evidence of a brilliant river civilization that once flourished in the Mekong Delta.",
+            a2t: "Sandstone Vishnu Statue",
+            a2d: "The 1.2m tall sandstone statue dates back to the 8th century. It depicts Vishnu in a majestic posture with four arms holding sacred symbols of supreme power: the Sudarshana disc, Kaumodaki mace, Panchajanya conch and a lotus. Discovered at Go Thap tower complex, this masterpiece of sculpture reflects the profound influence of Hindu culture on the beliefs and arts during the Phu Nam – Oc Eo period.",
+            a3t: "Nguyen Dynasty Coin Collection",
+            a3d: "This collection includes more than 500 bronze and gold coins issued from the reign of Gia Long (1802) to Bao Dai (1945), offering vivid evidence of the prosperous trade and economy in Dong Thap Muoi during the 19th–20th centuries. Each coin is not only a means of exchange but also a work of art engraved with dragons, phoenixes and royal symbols, reflecting the wealth and cultural exchange of the Nguyen dynasty.",
+            a4t: "Phu Nam Gold Ring",
+            a4d: "This 18K solid gold ring is engraved with the figure of a coiled Naga serpent – a sacred symbol of royal power in Phu Nam culture. Dating from the 3rd to 6th century AD, it was discovered in an ancient tomb in the Oc Eo area, demonstrating the sophisticated metallurgical technique and aesthetic taste of the indigenous people. It also provides evidence of the prosperity and authority of the aristocracy at that time.",
+            a5t: "Kien An Pagoda Stele",
+            a5d: "The ancient stone stele was erected in 1845, recording the construction and restoration of Kien An Pagoda under the reign of King Thieu Tri. Its Han-script inscriptions are legible and detailed, providing invaluable resources about the land reclamation, settlement, and religious life of the Vietnamese community in Dong Thap during the mid-19th century. The stele contributes significantly to reconstructing the social history of colonial Southern Vietnam.",
+            a6t: "Dong Son Bronze Sword",
+            a6d: "This short bronze sword features a handle engraved with war boat motifs and typical geometric patterns. It dates from the 3rd–2nd century BC and is an important find, proving early trade and cultural exchanges between the Northern and Southern communities of Vietnam. The sword was not just a weapon but also a symbol of power and prestige for the tribal chieftains of the prehistoric era.",
+            heritage_title: "Cultural Heritage",
+            heritage_sub:
+              "Outstanding cultural heritage preserved and presented at the museum",
+            h_badge_nat: "National Monument",
+            h_badge_hist: "Historic Site",
+            h_badge_natpark: "National Park",
+            h_badge_culture: "Intangible Cultural Heritage",
+            h_badge_craft: "Traditional Craft",
+            h_badge_intangible: "Cultural Heritage",
+            h1t: "Go Thap Historic Site",
+            h1d: "The Go Thap Special National Monument is one of the most important archaeological complexes in the Mekong Delta, preserving brilliant vestiges of the Oc Eo culture from the 1st to the 7th century. Here visitors can admire ancient towers, burial sites and an extensive canal system built with advanced techniques, reflecting a highly developed civilization. Each artifact and structure tells stories of religion, trade and spiritual life of ancient people, shaping the unique cultural identity of the Lotus Land.",
+            h1_loc: "Thap Muoi, Dong Thap",
+            h1_era: "1st - 7th Century",
+            h2t: "Monument of the 1954 Resettlement Event",
+            h2d: "The monument commemorates the historic event of the 1954 Geneva Agreement when thousands of Northern Vietnamese migrated to the South. Designed with imagery of boats carrying people and goods, it symbolizes the resilience, sacrifice and aspiration for freedom of the Vietnamese people. It serves as both a historical site and an educational place for patriotism, reminding younger generations of the values of national unity and history.",
+            h2_loc: "Cao Lanh, Dong Thap",
+            h2_era: "1954",
+            h3t: "Tram Chim National Park",
+            h3d: "Tram Chim National Park is one of Vietnam's most important wetlands and a UNESCO Ramsar site. It is home to the rare red-crowned crane (Grus antigone) and hundreds of bird, fish and plant species endemic to Dong Thap Muoi. With an area of 7,588 ha, the ecosystem of Tram Chim is not only a biodiversity conservation area but also a stunning natural landscape, attracting visitors with its endless water lily fields, flocks of white storks and serene wild nature.",
+            h3_loc: "Tam Nong, Dong Thap",
+            h3_area: "7,588 ha",
+            h4t: "Dinh Yen Mat Weaving Village",
+            h4d: "Dinh Yen Mat Weaving Village, located in Dinh Yen commune, Lap Vo district, Dong Thap province, is one of the most famous traditional craft villages in Dong Thap, specializing in hand-woven rush mats. With a history of over 200 years, the village has become a center for high-quality mat production, using natural rush fibers that are durable, beautiful and eco-friendly. The craft not only provides stable income for local people but also preserves traditional cultural values, giving a unique identity to Dong Thap.",
+            h4_loc: "Dinh Yen commune, Lap Vo district, Dong Thap",
+            h4_era: "Over 200 years",
+            h5t: "Sa Dec Flower Village",
+            h5d: "Sa Dec Flower Village, with more than 100 years of history, is a hallmark of Dong Thap culture. Situated along the romantic Tien River, the village is famous for hundreds of flower varieties in vibrant colors, from roses, chrysanthemums, apricot and peach to exotic imported flowers. Each year it supplies millions of products for domestic and export markets, building a strong tourism brand. This is not just a traditional craft village but a living artistic space, attracting visitors with its poetic landscape and the devotion of flower-loving farmers.",
+            h5_loc: "Sa Dec City, Dong Thap",
+            h5_era: "Over 100 years",
+            h6t: "Southern Amateur Music (Don Ca Tai Tu)",
+            h6d: "Southern Amateur Music is a unique genre of traditional music, recognized by UNESCO as a representative intangible cultural heritage of humanity in 2013. Originating in the late 19th century from Hue court music and Central folk songs, it carries the spirit of work, love and feelings of the Southern people. With its profound, skillful and improvised melodies, Don Ca Tai Tu has become the soul of gatherings, festivals and community life in Dong Thap and the whole Mekong Delta.",
+            h6_loc: "Mekong Delta",
+            h6_rec: "UNESCO 2013",
+            read_more: "Learn more",
+            newssec_title: "News & Featured Events",
+            newssec_sub: "Latest activities and events from Dong Thap Museum",
+            nf_hot: "Featured",
+            nf1_date: "23/09/2025",
+            nf1t: "Comrade Pham Huu Lau – the first communist party member of Dong Thap province",
+            nf1d: 'The Politburo recognized Comrade Pham Huu Lau as a typical pioneering leader of the Party and the Vietnamese revolution. He was admitted to the Annam Communist Party in October 1929, becoming the first communist party member of Sa Dec province. In January 1930, he was elected to the Provisional Central Committee of the Communist Party. Throughout his revolutionary life, he was exiled to Con Dao twice, was in charge of the "Dan Chung" newspaper and served as Secretary of the Southern Party Committee. On September 23, 2025, Dong Thap inaugurated the Memorial Site of the Annam Communist Party Cell, with a dedicated space in his honor.',
+            read_more_detail: "Read more",
+            n2_date: "08/06/2026",
+            n2t: "Scientific Conference: Preserving and Promoting Dong Thap Cultural Heritage Values",
+            n2d: "The conference brings together over 100 experts and researchers from home and abroad to discuss sustainable preservation solutions and ways to promote both tangible and intangible cultural heritages of Dong Thap province in the context of integration.",
+            n3_date: "01/06/2026",
+            n3t: '"I Love History" Program – Children\'s Day at the Museum',
+            n3d: "Hundreds of children joined the special event with fun and educational activities: painting historical figures, drawing the lotus land, listening to fairy tales and participating in discovery games, nurturing a love for history from an early age.",
+            n4_date: "20/05/2026",
+            n4t: "Vibrant activities to celebrate Vietnam Cultural Heritage Day (23/11) at Dong Thap Museum",
+            n4d: "Activities include a special exhibition on Oc Eo culture, folk art performances, a seminar on heritage preservation and traditional folk games, attracting a large number of local people and tourists, helping raise awareness about the value of cultural heritage.",
+            n5_date: "10/05/2026",
+            n5t: "Preserving and promoting heritage values through traditional cultural beauty during the Lunar New Year",
+            n5d: "Dong Thap Museum organized a series of traditional cultural experience activities during the Lunar New Year, including displaying ancient Tet artifacts, guiding the making of Chung cake and Tet cake, and folk games, aiming to educate younger generations about cultural values and community solidarity.",
+            n6_date: "28/04/2026",
+            n6t: "Dong Thap Museum pays attention to and introduces OCOP products and specialties of Dong Thap province",
+            n6d: "Dong Thap Museum cooperated with local production establishments and craft villages to organize an exhibition and introduction of OCOP products and specialties of the province, aiming to promote culinary culture and handicrafts, while supporting local economic development and raising awareness of traditional cultural values.",
+            view_all_news: "View all news",
+            fa: "Dong Thap Museum",
+            fad: "Dong Thap Museum preserves and displays outstanding cultural and historical values of the lotus land.",
+            fc: "Contact Info",
+            addr: "02A Truong Vinh Ky, My Tho ward",
+            phone: "0273 3872 235",
+            email: "baotangdongthap@gmail.com",
+            fh: "Opening Hours",
+            hw: "Mon - Sat: 8:00 AM - 5:00 PM",
+            hs: "Sunday & Holidays: 9:00 AM - 4:00 PM",
+            hh: "Closed: Lunar New Year",
+            fk: "Connect",
+            copy: "© 2026 Dong Thap Museum. All rights reserved.",
+            lg_title: "Login",
+            lg_sub: "Welcome back!",
+            lg_email: "Email",
+            lg_pw: "Password",
+            lg_btn: "Login",
+            lg_no_acc: "Don't have an account?",
+            lg_reg_link: "Register now",
+            lg_err_email: "Please enter a valid email",
+            lg_err_pw: "Please enter password",
+            lg_err_inv: "Invalid email or password",
+            sg_title: "Create Account",
+            sg_sub: "Register for full experience",
+            sg_email: "Email",
+            sg_pw: "Password",
+            sg_confirm: "Confirm Password",
+            sg_code: "Verification Code",
+            sg_send: "Send Code",
+            sg_resend: "Resend Code",
+            sg_timer: "Resend in",
+            sg_hint: "Enter the 6-digit code sent to your email",
+            sg_submit: "Confirm Registration",
+            sg_has_acc: "Already have an account?",
+            sg_login_link: "Login",
+            sg_ok_title: "Registration Successful!",
+            sg_ok_msg: "Your account has been created. You can login now.",
+            sg_ok_login: "Login Now",
+            sg_err_email: "Please enter a valid email",
+            sg_err_dup: "This email is already registered",
+            sg_err_pw: "Password must be at least 6 characters",
+            sg_err_confirm: "Passwords do not match",
+            sg_err_code: "Please enter a 6-digit verification code",
+            sg_code_sent: "Verification code sent to your email!",
+            pf_title: "Personal Information",
+            pf_acc: "Account (Email)",
+            pf_name: "Full Name",
+            pf_phone: "Phone Number",
+            pf_addr: "Address",
+            pf_nat: "Nationality",
+            pf_save: "Save Changes",
+            pf_err_name: "Please enter your name",
+            pf_ok: "Updated successfully!",
+            cp_title: "Change Password",
+            cp_cur: "Current Password",
+            cp_new: "New Password",
+            cp_conf: "Confirm New Password",
+            cp_btn: "Change Password",
+            cp_err_cur: "Please enter current password",
+            cp_err_new: "New password must be at least 6 characters",
+            cp_err_conf: "Passwords do not match",
+            cp_err_wrong: "Current password is incorrect",
+            cp_ok: "Password changed successfully!",
+            vs_title: "Visit Registration",
+            vs_sub:
+              "Please fill in the information below to register for a visit to Dong Thap Museum.",
+            vs_name: "Full Name",
+            vs_phone: "Phone Number",
+            vs_email: "Email",
+            vs_date: "Visit Date",
+            vs_guests: "Number of Guests",
+            vs_notes: "Notes",
+            vs_btn: "Submit Registration",
+            vs_cancel: "Cancel",
+            vs_ok_title: "Registration Successful!",
+            vs_ok_msg:
+              "Thank you for registering. We will contact you for confirmation as soon as possible.",
+            close: "Close",
+            login_required: "Login Required",
+            login_required_msg: "Please login to access this feature.",
+            you_selected: "You selected: ",
+            login_ok: "Login successful!",
+            logout_ok: "You have been logged out.",
+            err_name: "Please enter full name",
+            err_phone: "Invalid phone number",
+            err_email: "Invalid email",
+            err_date: "Please select visit date",
+            err_guests: "Invalid number of guests",
+          },
+        };
+
+        var countries = [
+          { v: "", vi: "-- Chọn quốc tịch --", en: "-- Select nationality --" },
+          { v: "VN", vi: "Việt Nam", en: "Vietnam" },
+          { v: "US", vi: "Hoa Kỳ", en: "United States" },
+          { v: "JP", vi: "Nhật Bản", en: "Japan" },
+          { v: "KR", vi: "Hàn Quốc", en: "South Korea" },
+          { v: "CN", vi: "Trung Quốc", en: "China" },
+          { v: "TH", vi: "Thái Lan", en: "Thailand" },
+          { v: "SG", vi: "Singapore", en: "Singapore" },
+          { v: "MY", vi: "Malaysia", en: "Malaysia" },
+          { v: "GB", vi: "Vương quốc Anh", en: "United Kingdom" },
+          { v: "FR", vi: "Pháp", en: "France" },
+          { v: "DE", vi: "Đức", en: "Germany" },
+          { v: "AU", vi: "Úc", en: "Australia" },
+          { v: "OTHER", vi: "Khác", en: "Other" },
+        ];
+
+        var curLang = "vi",
+          loggedIn = false,
+          user = null,
+          users = [];
+        var codeTm = null,
+          codeSec = 0;
+
+        function t(k) {
+          return (T[curLang] && T[curLang][k]) || k;
+        }
+        function togglePw(id, btn) {
+          var i = document.getElementById(id),
+            ic = btn.querySelector("i");
+          i.type === "password"
+            ? ((i.type = "text"), (ic.className = "fas fa-eye-slash"))
+            : ((i.type = "password"), (ic.className = "fas fa-eye"));
+        }
+        window.togglePw = togglePw;
+        function clrE(g) {
+          var e = document.getElementById(g);
+          if (e) {
+            e.classList.remove("error");
+            var x = e.querySelector(".error-text");
+            if (x) x.classList.remove("show");
+          }
+        }
+        function setE(g, m) {
+          var e = document.getElementById(g);
+          if (e) {
+            e.classList.add("error");
+            var x = e.querySelector(".error-text");
+            if (x) {
+              x.textContent = m;
+              x.classList.add("show");
+            }
+          }
+        }
+        function closeAll() {
+          document.querySelectorAll(".modal-overlay").forEach(function (m) {
+            m.classList.remove("active");
+          });
+          document.body.style.overflow = "";
+        }
+        function fillCountry(id) {
+          var s = document.getElementById(id);
+          if (!s) return;
+          var v = s.value;
+          s.innerHTML = "";
+          countries.forEach(function (c) {
+            var o = document.createElement("option");
+            o.value = c.v;
+            o.textContent = c[curLang] || c.vi;
+            s.appendChild(o);
+          });
+          s.value = v;
+        }
+
+        /* SLIDESHOW */
+        var slides = document.querySelectorAll("#bannerSlideshow .slide"),
+          dots = document.querySelectorAll(".dot"),
+          si = 0,
+          iv;
+        function goTo(i) {
+          if (i < 0) i = slides.length - 1;
+          if (i >= slides.length) i = 0;
+          slides[si].classList.remove("active");
+          si = i;
+          slides[si].classList.add("active");
+          dots.forEach(function (d, j) {
+            d.classList.toggle("active", j === si);
+          });
+        }
+        function next() {
+          goTo(si + 1);
+        }
+        function start() {
+          iv = setInterval(next, 4000);
+        }
+        function stop() {
+          clearInterval(iv);
+        }
+        dots.forEach(function (d) {
+          d.addEventListener("click", function () {
+            stop();
+            goTo(+this.dataset.index);
+            start();
+          });
+        });
+        document
+          .getElementById("bannerSlideshow")
+          .addEventListener("mouseenter", stop);
+        document
+          .getElementById("bannerSlideshow")
+          .addEventListener("mouseleave", start);
+        goTo(0);
+        start();
+
+        /* SCROLL REVEAL */
+        var reveals = document.querySelectorAll(".reveal");
+        function checkReveal() {
+          var wh = window.innerHeight;
+          reveals.forEach(function (el) {
+            var top = el.getBoundingClientRect().top;
+            if (top < wh - 60) el.classList.add("visible");
+          });
+        }
+        window.addEventListener("scroll", checkReveal);
+        checkReveal();
+
+        /* APPLY LANGUAGE */
+        function applyLang(lang) {
+          curLang = lang;
+          document.querySelectorAll("[data-key]").forEach(function (el) {
+            var k = el.dataset.key;
+            if (T[lang] && T[lang][k] !== undefined) {
+              if (k === "intro_title") el.innerHTML = T[lang][k];
+              else el.textContent = T[lang][k];
+            }
+          });
+          var si = document.getElementById("searchInput");
+          if (si && T[lang] && T[lang].search_ph)
+            si.placeholder = T[lang].search_ph;
+          fillCountry("profNationality");
+          if (codeTm && codeSec > 0) updTimerBtn();
+          if (loggedIn && user)
+            document.getElementById("profileDisplayName").textContent =
+              user.fullname || (lang === "vi" ? "Người dùng" : "User");
+          document.querySelectorAll("#langToggle button").forEach(function (b) {
+            b.classList.toggle("active", b.dataset.lang === lang);
+          });
+          document.documentElement.lang = lang;
+        }
+        document.querySelectorAll("#langToggle button").forEach(function (b) {
+          b.addEventListener("click", function () {
+            applyLang(this.dataset.lang);
+          });
+        });
+
+        /* AUTH UI */
+        function updAuth() {
+          var r = document.getElementById("registerNav"),
+            l = document.getElementById("loginNav"),
+            p = document.getElementById("profileMenu");
+          if (loggedIn) {
+            r.classList.add("hidden");
+            l.classList.add("hidden");
+            p.classList.remove("hidden");
+            document.getElementById("profileDisplayName").textContent =
+              (user && user.fullname) ||
+              (curLang === "vi" ? "Người dùng" : "User");
+          } else {
+            r.classList.remove("hidden");
+            l.classList.remove("hidden");
+            p.classList.add("hidden");
+          }
+        }
+
+        var nm = document.getElementById("notifModal"),
+          nt = document.getElementById("notifTitle"),
+          nMsg = document.getElementById("notifMessage"),
+          nC = document.getElementById("notifConfirm"),
+          nX = document.getElementById("notifCancel"),
+          nCl = document.getElementById("notifClose");
+
+        function notify(title, msg, conf, onConf) {
+          nt.textContent = title;
+          nMsg.textContent = msg;
+          nm.classList.add("active");
+          var nc = nC.cloneNode(true),
+            nx = nX.cloneNode(true);
+          nC.parentNode.replaceChild(nc, nC);
+          nX.parentNode.replaceChild(nx, nX);
+          if (conf) {
+            nc.style.display = "";
+            nc.textContent = conf;
+            nc.onclick = function () {
+              nm.classList.remove("active");
+              if (onConf) onConf();
+            };
+          } else {
+            nc.style.display = "none";
+          }
+          nx.style.display = "";
+          nx.textContent = t("close");
+          nx.onclick = function () {
+            nm.classList.remove("active");
+          };
+          nCl.onclick = function () {
+            nm.classList.remove("active");
+          };
+          nm.onclick = function (e) {
+            if (e.target === nm) nm.classList.remove("active");
+          };
+        }
+
+        /* LOGIN */
+        var loginM = document.getElementById("loginModal");
+        function openLogin() {
+          closeAll();
+          document.getElementById("loginForm").reset();
+          clrE("lgEmailG");
+          clrE("lgPwG");
+          loginM.classList.add("active");
+          document.body.style.overflow = "hidden";
+        }
+        function closeLogin() {
+          loginM.classList.remove("active");
+          document.body.style.overflow = "";
+        }
+        document
+          .getElementById("loginModalClose")
+          .addEventListener("click", closeLogin);
+        loginM.addEventListener("click", function (e) {
+          if (e.target === loginM) closeLogin();
+        });
+        document
+          .getElementById("loginForm")
+          .addEventListener("submit", function (e) {
+            e.preventDefault();
+            clrE("lgEmailG");
+            clrE("lgPwG");
+            var email = document.getElementById("loginEmail").value.trim(),
+              pw = document.getElementById("loginPassword").value,
+              ok = true;
+            if (!email || !email.includes("@")) {
+              setE("lgEmailG", t("lg_err_email"));
+              ok = false;
+            }
+            if (!pw) {
+              setE("lgPwG", t("lg_err_pw"));
+              ok = false;
+            }
+            if (!ok) return;
+            var u = null;
+            for (var i = 0; i < users.length; i++) {
+              if (users[i].email === email && users[i].password === pw) {
+                u = users[i];
+                break;
+              }
+            }
+            if (!u) {
+              setE("lgPwG", t("lg_err_inv"));
+              return;
+            }
+            user = {};
+            for (var k in u) user[k] = u[k];
+            loggedIn = true;
+            closeLogin();
+            updAuth();
+            applyLang(curLang);
+            notify("OK", t("login_ok"));
+          });
+        document
+          .getElementById("loginToRegister")
+          .addEventListener("click", function () {
+            closeLogin();
+            openSignup();
+          });
+
+        /* SIGNUP */
+        var signupM = document.getElementById("signupModal"),
+          sgFV = document.getElementById("signupFormView"),
+          sgSV = document.getElementById("signupSuccessView"),
+          sgBtn = document.getElementById("sendCodeBtn");
+        function openSignup() {
+          closeAll();
+          document.getElementById("signupForm").reset();
+          sgFV.style.display = "block";
+          sgSV.classList.remove("active");
+          ["sgEmailG", "sgPwG", "sgConfG", "sgCodeG"].forEach(clrE);
+          if (codeTm) {
+            clearInterval(codeTm);
+            codeTm = null;
+            codeSec = 0;
+          }
+          sgBtn.disabled = false;
+          sgBtn.textContent = t("sg_send");
+          signupM.classList.add("active");
+          document.body.style.overflow = "hidden";
+        }
+        function closeSignup() {
+          signupM.classList.remove("active");
+          document.body.style.overflow = "";
+          if (codeTm) {
+            clearInterval(codeTm);
+            codeTm = null;
+          }
+        }
+        document
+          .getElementById("signupModalClose")
+          .addEventListener("click", closeSignup);
+        signupM.addEventListener("click", function (e) {
+          if (e.target === signupM) closeSignup();
+        });
+        document
+          .getElementById("signupToLogin")
+          .addEventListener("click", function () {
+            closeSignup();
+            openLogin();
+          });
+        document
+          .getElementById("signupSuccessLoginBtn")
+          .addEventListener("click", function () {
+            closeSignup();
+            openLogin();
+          });
+
+        function updTimerBtn() {
+          var m = String(Math.floor(codeSec / 60)).padStart(2, "0"),
+            s = String(codeSec % 60).padStart(2, "0");
+          sgBtn.textContent = t("sg_timer") + " " + m + ":" + s;
+        }
+        function startTimer() {
+          codeSec = 120;
+          updTimerBtn();
+          sgBtn.disabled = true;
+          codeTm = setInterval(function () {
+            codeSec--;
+            if (codeSec <= 0) {
+              clearInterval(codeTm);
+              codeTm = null;
+              sgBtn.disabled = false;
+              sgBtn.textContent = t("sg_resend");
+            } else updTimerBtn();
+          }, 1000);
+        }
+
+        sgBtn.addEventListener("click", function () {
+          clrE("sgEmailG");
+          var email = document.getElementById("signupEmail").value.trim();
+          if (!email || !email.includes("@")) {
+            setE("sgEmailG", t("sg_err_email"));
+            return;
+          }
+          startTimer();
+          notify("📧", t("sg_code_sent"));
+        });
+
+        document
+          .getElementById("signupForm")
+          .addEventListener("submit", function (e) {
+            e.preventDefault();
+            ["sgEmailG", "sgPwG", "sgConfG", "sgCodeG"].forEach(clrE);
+            var email = document.getElementById("signupEmail").value.trim(),
+              pw = document.getElementById("signupPassword").value,
+              cpw = document.getElementById("signupConfirmPw").value,
+              code = document.getElementById("signupCode").value.trim(),
+              ok = true;
+            if (!email || !email.includes("@")) {
+              setE("sgEmailG", t("sg_err_email"));
+              ok = false;
+            } else {
+              for (var i = 0; i < users.length; i++) {
+                if (users[i].email === email) {
+                  setE("sgEmailG", t("sg_err_dup"));
+                  ok = false;
+                  break;
+                }
+              }
+            }
+            if (!pw || pw.length < 6) {
+              setE("sgPwG", t("sg_err_pw"));
+              ok = false;
+            }
+            if (pw !== cpw) {
+              setE("sgConfG", t("sg_err_confirm"));
+              ok = false;
+            }
+            if (!code || code.length !== 6) {
+              setE("sgCodeG", t("sg_err_code"));
+              ok = false;
+            }
+            if (!ok) return;
+            users.push({
+              email: email,
+              password: pw,
+              fullname: "",
+              phone: "",
+              address: "",
+              nationality: "",
+            });
+            if (codeTm) {
+              clearInterval(codeTm);
+              codeTm = null;
+            }
+            sgFV.style.display = "none";
+            sgSV.classList.add("active");
+          });
+
+        /* PROFILE */
+        var pfM = document.getElementById("profileModal");
+        function openPf() {
+          if (!loggedIn || !user) return;
+          closeAll();
+          document.getElementById("profEmail").value = user.email || "";
+          document.getElementById("profFullname").value = user.fullname || "";
+          document.getElementById("profPhone").value = user.phone || "";
+          document.getElementById("profAddress").value = user.address || "";
+          fillCountry("profNationality");
+          document.getElementById("profNationality").value =
+            user.nationality || "";
+          clrE("pfNameG");
+          pfM.classList.add("active");
+          document.body.style.overflow = "hidden";
+        }
+        function closePf() {
+          pfM.classList.remove("active");
+          document.body.style.overflow = "";
+        }
+        document
+          .getElementById("profileModalClose")
+          .addEventListener("click", closePf);
+        pfM.addEventListener("click", function (e) {
+          if (e.target === pfM) closePf();
+        });
+        document
+          .getElementById("profileForm")
+          .addEventListener("submit", function (e) {
+            e.preventDefault();
+            clrE("pfNameG");
+            var name = document.getElementById("profFullname").value.trim();
+            if (!name) {
+              setE("pfNameG", t("pf_err_name"));
+              return;
+            }
+            user.fullname = name;
+            user.phone = document.getElementById("profPhone").value.trim();
+            user.address = document.getElementById("profAddress").value.trim();
+            user.nationality = document.getElementById("profNationality").value;
+            for (var i = 0; i < users.length; i++) {
+              if (users[i].email === user.email) {
+                for (var k in user) users[i][k] = user[k];
+                break;
+              }
+            }
+            updAuth();
+            applyLang(curLang);
+            notify("✓", t("pf_ok"));
+          });
+
+        /* CHANGE PASSWORD */
+        var cpM = document.getElementById("changePwModal");
+        function openCp() {
+          if (!loggedIn) return;
+          closeAll();
+          document.getElementById("changePwForm").reset();
+          ["cpCurG", "cpNewG", "cpConfG"].forEach(clrE);
+          cpM.classList.add("active");
+          document.body.style.overflow = "hidden";
+        }
+        function closeCp() {
+          cpM.classList.remove("active");
+          document.body.style.overflow = "";
+        }
+        document
+          .getElementById("changePwModalClose")
+          .addEventListener("click", closeCp);
+        cpM.addEventListener("click", function (e) {
+          if (e.target === cpM) closeCp();
+        });
+        document
+          .getElementById("changePwForm")
+          .addEventListener("submit", function (e) {
+            e.preventDefault();
+            ["cpCurG", "cpNewG", "cpConfG"].forEach(clrE);
+            var cur = document.getElementById("cpCurrentPw").value,
+              npw = document.getElementById("cpNewPw").value,
+              cpw = document.getElementById("cpConfirmPw").value,
+              ok = true;
+            if (!cur) {
+              setE("cpCurG", t("cp_err_cur"));
+              ok = false;
+            }
+            if (!npw || npw.length < 6) {
+              setE("cpNewG", t("cp_err_new"));
+              ok = false;
+            }
+            if (npw !== cpw) {
+              setE("cpConfG", t("cp_err_conf"));
+              ok = false;
+            }
+            if (!ok) return;
+            if (user.password !== cur) {
+              setE("cpCurG", t("cp_err_wrong"));
+              return;
+            }
+            user.password = npw;
+            for (var i = 0; i < users.length; i++) {
+              if (users[i].email === user.email) {
+                users[i].password = npw;
+                break;
+              }
+            }
+            closeCp();
+            notify("✓", t("cp_ok"));
+          });
+
+        /* VISIT REGISTRATION */
+        var vsM = document.getElementById("visitModal");
+        function openVs() {
+          closeAll();
+          document.getElementById("visitForm").reset();
+          document
+            .getElementById("visitFormContent")
+            .classList.remove("hidden");
+          document.getElementById("visitSuccessMsg").classList.remove("active");
+          var d = new Date();
+          d.setDate(d.getDate() + 1);
+          document.getElementById("visitDate").value =
+            d.getFullYear() +
+            "-" +
+            String(d.getMonth() + 1).padStart(2, "0") +
+            "-" +
+            String(d.getDate()).padStart(2, "0");
+          vsM.classList.add("active");
+          document.body.style.overflow = "hidden";
+        }
+        function closeVs() {
+          vsM.classList.remove("active");
+          document.body.style.overflow = "";
+        }
+        document
+          .getElementById("visitModalClose")
+          .addEventListener("click", closeVs);
+        document
+          .getElementById("visitCancelBtn")
+          .addEventListener("click", closeVs);
+        document
+          .getElementById("visitSuccessClose")
+          .addEventListener("click", closeVs);
+        vsM.addEventListener("click", function (e) {
+          if (e.target === vsM) closeVs();
+        });
+        document
+          .getElementById("visitForm")
+          .addEventListener("submit", function (e) {
+            e.preventDefault();
+            var v = function (id) {
+              return document.getElementById(id).value.trim();
+            };
+            if (!v("visitFullname")) {
+              notify("", t("err_name"));
+              return;
+            }
+            if (!v("visitPhone") || v("visitPhone").length < 9) {
+              notify("", t("err_phone"));
+              return;
+            }
+            if (!v("visitEmail") || !v("visitEmail").includes("@")) {
+              notify("", t("err_email"));
+              return;
+            }
+            if (!v("visitDate")) {
+              notify("", t("err_date"));
+              return;
+            }
+            if (!v("visitGuests") || parseInt(v("visitGuests")) < 1) {
+              notify("", t("err_guests"));
+              return;
+            }
+            document.getElementById("visitFormContent").classList.add("hidden");
+            document.getElementById("visitSuccessMsg").classList.add("active");
+          });
+
+        /* NAV EVENTS */
+        document
+          .querySelector("#registerNav a")
+          .addEventListener("click", function (e) {
+            e.preventDefault();
+            openSignup();
+          });
+        document
+          .querySelector("#loginNav a")
+          .addEventListener("click", function (e) {
+            e.preventDefault();
+            openLogin();
+          });
+        document
+          .getElementById("logoutBtn")
+          .addEventListener("click", function (e) {
+            e.preventDefault();
+            if (!loggedIn) return;
+            loggedIn = false;
+            user = null;
+            updAuth();
+            applyLang(curLang);
+            closeVs();
+            notify("OK", t("logout_ok"));
+          });
+        document
+          .getElementById("profileInfoLink")
+          .addEventListener("click", function (e) {
+            e.preventDefault();
+            openPf();
+          });
+        document
+          .getElementById("profileChangePwLink")
+          .addEventListener("click", function (e) {
+            e.preventDefault();
+            openCp();
+          });
+        document
+          .getElementById("profileBookingLink")
+          .addEventListener("click", function (e) {
+            e.preventDefault();
+            openVs();
+          });
+        document
+          .getElementById("visitRegisterLink")
+          .addEventListener("click", function (e) {
+            e.preventDefault();
+            if (!loggedIn)
+              notify(
+                t("login_required"),
+                t("login_required_msg"),
+                t("login"),
+                function () {
+                  openLogin();
+                },
+              );
+            else openVs();
+          });
+        document
+          .querySelectorAll(".nav-menu .dropdown li a")
+          .forEach(function (link) {
+            if (link.id === "visitRegisterLink") return;
+            link.addEventListener("click", function (e) {
+              e.preventDefault();
+              notify("ℹ️", t("you_selected") + link.textContent.trim());
+            });
+          });
+        document
+          .querySelector('.nav-menu>li>a[data-key="home"]')
+          .addEventListener("click", function (e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+
+        /* SEARCH */
+        document
+          .querySelectorAll(".search-suggestions span")
+          .forEach(function (s) {
+            s.addEventListener("click", function () {
+              var inner = this.querySelector("[data-key]");
+              document.getElementById("searchInput").value = inner
+                ? inner.textContent.trim()
+                : this.textContent.trim();
+              document.getElementById("searchInput").focus();
+            });
+          });
+        document
+          .getElementById("searchBtn")
+          .addEventListener("click", function () {
+            var q = document.getElementById("searchInput").value.trim();
+            notify(
+              "🔎",
+              q
+                ? (curLang === "vi" ? "Đang tìm kiếm: " : "Searching: ") +
+                    ('"' + q + '"')
+                : t("search_ph"),
+            );
+          });
+        document
+          .getElementById("searchInput")
+          .addEventListener("keypress", function (e) {
+            if (e.key === "Enter") document.getElementById("searchBtn").click();
+          });
+
+        /* INIT */
+        updAuth();
+        applyLang("vi");
+      });
+    </script>
+  </body>
+</html>
