@@ -1,0 +1,81 @@
+QL_VienBaoTang_TinhDongThap/
+│
+├── Database/                     # Chứa CSDL
+│   ├── Script/                   # File tạo database (.sql)
+│   ├── Backup/                   # File sao lưu database
+│   └── Diagram/                  # ERD, sơ đồ CSDL
+│
+├── Documents/                    # Tài liệu dự án
+│   ├── Requirement/              # Đặc tả yêu cầu
+│   ├── API/                      # Tài liệu API (nếu có)
+│   ├── UML/                      # Use Case, Class, Activity...
+│   └── Images/                   # Hình ảnh phục vụ báo cáo
+│
+├── Report/                       # Báo cáo đồ án
+│   ├── Word/                     # File Word
+│   ├── PDF/                      # File PDF
+│   └── Slide/                    # PowerPoint bảo vệ
+│
+└── SourceCode/
+    │
+    ├── Backend/
+    │   │
+    │   ├── api/                  # Các API nhận request từ Ajax/Fetch
+    │   │
+    │   ├── config/               # Cấu hình hệ thống
+    │   │   ├── database.php      # Kết nối MySQL (PDO)
+    │   │   ├── config.php        # Cấu hình chung
+    │   │   └── session.php       # Quản lý Session
+    │   │
+    │   ├── controllers/          # Xử lý yêu cầu từ giao diện
+    │   │                          # Gọi Model và trả kết quả
+    │   │
+    │   ├── models/               # Làm việc với CSDL
+    │   │                          # CRUD, SELECT, INSERT, UPDATE, DELETE
+    │   │
+    │   ├── helpers/              # Hàm dùng chung
+    │   │                          # Upload ảnh, Validate, Format...
+    │   │
+    │   └── uploads/              # Lưu ảnh upload
+    │       ├── artifacts/        # Ảnh hiện vật
+    │       ├── users/            # Avatar người dùng
+    │       └── temp/             # File tạm
+    │
+    └── Frontend/
+        │
+        ├── Admin/                # Giao diện quản trị
+        │   │
+        │   ├── assets/
+        │   │   ├── css/          # File CSS
+        │   │   ├── js/           # JavaScript
+        │   │   ├── images/       # Ảnh giao diện
+        │   │   └── plugins/      # Bootstrap, CKEditor...
+        │   │
+        │   ├── components/       # Header, Sidebar, Footer...
+        │   │
+        │   └── pages/            # Các trang chức năng
+        │       ├── dashboard/
+        │       ├── artifacts/
+        │       ├── categories/
+        │       ├── exhibitions/
+        │       ├── employees/
+        │       ├── visitors/
+        │       ├── reports/
+        │       └── settings/
+        │
+        └── Client/               # Website cho khách tham quan
+            │
+            ├── assets/
+            │   ├── css/
+            │   ├── js/
+            │   └── images/
+            │
+            ├── components/       # Header, Menu, Footer
+            │
+            └── pages/
+                ├── home/
+                ├── artifacts/
+                ├── exhibitions/
+                ├── news/
+                ├── contact/
+                └── about/
