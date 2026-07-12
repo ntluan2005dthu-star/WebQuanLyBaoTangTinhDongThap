@@ -1,4 +1,4 @@
-QL_VienBaoTang_TinhDongThap/
+QL_BaoTang_TinhDongThap/
 │
 ├── Database/                     # Chứa CSDL
 │   ├── Script/                   # File tạo database (.sql)
@@ -33,13 +33,9 @@ QL_VienBaoTang_TinhDongThap/
     │   ├── models/               # Làm việc với CSDL
     │   │                          # CRUD, SELECT, INSERT, UPDATE, DELETE
     │   │
-    │   ├── helpers/              # Hàm dùng chung
-    │   │                          # Upload ảnh, Validate, Format...
     │   │
-    │   └── uploads/              # Lưu ảnh upload
-    │       ├── artifacts/        # Ảnh hiện vật
-    │       ├── users/            # Avatar người dùng
-    │       └── temp/             # File tạm
+    │	└── helpers/              # Hàm dùng chung
+    │                            # Upload ảnh, Validate, Format...
     │
     └── Frontend/
         │
@@ -63,19 +59,24 @@ QL_VienBaoTang_TinhDongThap/
         │       ├── reports/
         │       └── settings/
         │
-        └── Client/               # Website cho khách tham quan
-            │
-            ├── assets/
-            │   ├── css/
-            │   ├── js/
-            │   └── images/
-            │
-            ├── components/       # Header, Menu, Footer
-            │
-            └── pages/
-                ├── home/
-                ├── artifacts/
-                ├── exhibitions/
-                ├── news/
-                ├── contact/
-                └── about/
+        ├── Client/               # Website cho khách tham quan
+        │   │
+        │   ├── assets/
+        │   │   ├── css/
+        │   │   ├── js/
+        │   │   └── images/
+        │   │
+        │   ├── components/       # Header, Menu, Footer
+        │   │
+        │   └── pages/
+        │       ├── home/
+        │       ├── artifacts/
+        │       ├── exhibitions/
+        │       ├── news/
+        │       ├── contact/
+        │       └── about/
+        │
+        └── uploads/              # Lưu ảnh upload
+            ├── artifacts/        # Ảnh hiện vật
+            ├── users/            # Avatar người dùng
+            └── temp/             # File tạm
